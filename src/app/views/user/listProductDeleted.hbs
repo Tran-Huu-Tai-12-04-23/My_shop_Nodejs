@@ -1,0 +1,103 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">nameproduct</th>
+      <th scope="col">desciption</th>
+      <th scope="col">cost</th>
+      <th scope="col">link image</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+      <tr>
+        <th scope="row">1</th>
+        <td>{{this.nameproduct}}</td>
+        <td>{{this.desciption}}</td>
+        <td>{{this.cost}}</td>
+        <td>{{this.link_image}}</td>
+        <td style="color: #fff;" class="container">
+          <button
+            data-id="{{this._id}}"
+            class="btn btn-dark btn__restore"
+          >restore</button>
+          <button
+            data-id="{{this._id}}"
+            class="btn btn-dark btn__force__delete"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >remove</button>
+        </td>
+      </tr>
+    {{/each}}
+
+  </tbody>
+</table>
+<div class="pre__store__product btn btn-primary">
+  <a style="color: #fff;" href="/user/product/store">
+    <i class="bx bx-left-arrow-alt">Back</i>
+  </a>
+</div>
+
+{{! modal  }}
+<div id="modal" class="hidden">
+  <div class="modal__wrapper">
+    <div class="modal__title">
+      <h1>Delete?</h1>
+    </div>
+    <div class="modal__content">
+      Are you sure you want to delete? cannot restore..
+    </div>
+    <div class="modal__footer">
+      <button class="btn btn-primary btn__close__modal">Close</button>
+      <button class="btn btn-danger btn__force__delete__modal">Remove</button>
+    </div>
+  </div>
+</div>
+
+<form method="POST" class="form__delete"></form>
+<form method="POST" class="form__restore__product"></form>
+
+<script>
+  $(document).ready(function () {
+  const btnRestore = $(".btn__restore");
+  const btnForceDelete = $(".btn__force__delete");
+  const formRestore = $(".form__restore__product");
+  const btnCloseModal = $(".btn__close__modal");
+  const btnForceDeleteModal = $(".btn__force__delete__modal");
+  const formDelete = $(".form__delete");
+
+  console.log(btnForceDeleteModal);
+
+  btnRestore.click(function () {
+    const idproduct = $(this).data("id");
+    formRestore.attr(
+      "action",
+      `/user/product/restore/${idproduct}?_method=PUT`
+    );
+    formRestore.submit();
+  });
+
+  btnForceDelete.click(function () {
+    $("#modal").removeClass("hidden");
+    btnForceDeleteModal.attr("data-id", $(this).data("id"));
+  });
+
+  btnCloseModal.click(function () {
+    $("#modal").addClass("hidden");
+  });
+
+  btnForceDeleteModal.click(function () {
+    const idproductDelete = $(this).data("id");
+    console.log(idproductDelete);
+    formDelete.attr(
+      "action",
+      `
+        /user/product/destroy/${idproductDelete}?_method=DELETE `
+    );
+    formDelete.submit();
+  });
+});
+
+</script>

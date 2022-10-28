@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <h3>Post my product</h3>
+
+  <form method="POST" action="/user/create/store">
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input
+        type="textarea"
+        class="form-control"
+        id="description"
+        name="description"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="cost">Cost</label>
+      <input type="text" class="form-control" id="cost" name="cost" />
+    </div>
+    <div class="form-group">
+      <label for="linkimage">Link image</label>
+      <input type="text" class="form-control" id="linkimage" name="linkimage" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">POST</button>
+  </form>
+</div>

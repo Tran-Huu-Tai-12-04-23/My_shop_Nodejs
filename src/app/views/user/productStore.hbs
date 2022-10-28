@@ -1,0 +1,64 @@
+<div class="container row">
+  <h1>List products posted</h1>
+  <a href="/user/product/listProductDeleted">
+    <i
+      style="
+    font-size: 32px;
+    line-height: 50px;
+    margin-left: 18px;
+    color: #d0011b;
+  "
+      class="bx bxs-trash-alt"
+    >
+      {{count}}
+    </i>
+  </a>
+</div>
+<div class="container mt-4" style="display: flex;flex-wrap: wrap">
+  {{#each products}}
+
+    <div class="card ml-4 mt-4" style="width: 18rem;">
+      <img
+        class="card-img-top"
+        src="{{this.link_image}}"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{this.nameproduct}}</h5>
+        <p class="card-text">{{this.description}}</p>
+        <span
+          class="mb-4"
+          style="float: right;width: 100%;
+            color: #ee4d2d;
+          "
+        >đ{{this.cost}}.000</span>
+        <div class="btn__cart">
+          <div
+            class="container"
+            style="
+            display:flex;
+            height:38px;
+            justify-content: space-between;
+          "
+          >
+            <a
+              href="/user/product/getProductEdit/{{this._id}}"
+              class="btn btn-primary"
+            >Edit</a>
+            <form
+              method="POST"
+              action="/user/product/softdelete/{{this._id}}?_method=PUT"
+            >
+              <button type="submit" class="btn btn-primary">
+                Remove
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  {{/each}}
+
+</div>

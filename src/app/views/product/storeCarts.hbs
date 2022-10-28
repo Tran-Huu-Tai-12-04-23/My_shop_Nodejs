@@ -1,0 +1,76 @@
+<div>
+  <a
+    style="color: rgb(46, 135, 171);
+  font-size: 24px;"
+    href="/"
+  >Back</a>
+  <h1>Cart store</h1>
+  <h2 style="color: rgb(163, 51, 51);">Amount : -- {{countCart}} -- </h2>
+  <div class="wrap__store">
+    {{#each listItems}}
+      <div class="item__cart__store">
+        <div class="wrap__cart__store">
+          <img src="{{this.link_image}}" alt="" />
+          <h5>{{this.description}}</h5>
+          <div class="type__cart">
+            <span>Phân Loại hàng: </span>
+            <span>Túi zip</span>
+          </div>
+          <span class="cost">đ{{this.cost}}</span>
+
+          <div style="cursor: pointer; user-select: none"class="nav__count">
+            <span class="icon__pre">-</span>
+            <span class="count__product"></span>
+            <span class="icon__next">+</span>
+          </div>
+
+          <div class="option__cart">
+            <button
+              data-id="{{this._id}}"
+              class="btn__remove__cart"
+            >Remove</button>
+            <button>Buy</button>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+<form method="POST" class="form__delete__item__instrore"></form>
+
+<script>
+  const btnRemoveCart = $('.btn__remove__cart') ;
+  const formDelete = $('.form__delete__item__instrore') ;console.log(formDelete);
+  btnRemoveCart.click( function () { 
+    const idItem = $(this).data('id');
+    formDelete.attr( "action",
+  `/user/cart/store/delete/${idItem}?_method=DELETE`); formDelete.submit();
+   } );
+
+    const iconPre = $('.icon__pre');
+    const iconNext = $('.icon__next');
+    const countProcut = $('.count__product');
+    const btnAddCart = $('.button__add__cart');
+
+    var count = 1;
+    countProcut.text(count);
+    iconPre.click( function() {
+        count = $(this).parent().children('.count__product').text(); 
+        count --;
+        if( count <= 0) {
+            count = 1;
+        }
+        $(this).parent().children('.count__product').text(count);
+    })
+
+    iconNext.click(function() {
+        count = $(this).parent().children('.count__product').text(); 
+        count ++;
+        $(this).parent().children('.count__product').text(count);
+    })
+
+    btnAddCart.click( function(e) {
+        e.preventDefault();
+    })
+
+</script>
