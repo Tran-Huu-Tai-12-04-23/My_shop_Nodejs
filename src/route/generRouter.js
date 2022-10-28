@@ -3,6 +3,8 @@ const userDB = require("../model/users");
 const { UserControllers } = require("../controllers/UserControllers");
 const userMiddleware = require("../middelware/userMiddleware");
 
+//[delete] account /user/account/delete/:id
+router.delete("/user/account/delete/:id", UserControllers.deleteAccount);
 //[get] logout
 router.get("/logout", UserControllers.logout);
 //[get] form regester

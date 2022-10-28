@@ -5,8 +5,12 @@ const connectMgdb = require("./config/connectuserDb");
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 const helper = require("./helper/helper");
+const path = require("path");
+const multer = require("multer");
 
 app = express();
+// use static file
+app.use(express.static(path.join(__dirname, "resourse/public")));
 app.engine(
   ".hbs",
   engine({
@@ -27,7 +31,7 @@ app.use(
 );
 
 app.set("view engine", "hbs");
-app.set("views", "./src/app/views");
+app.set("views", "./src/resourse/public/views");
 // use middleware to get user post
 
 // run route main in app

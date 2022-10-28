@@ -1,7 +1,8 @@
 const userDB = require("../model/users");
 const productsDB = require("../model/products");
 const utilsConvertoObject = require("../util/covertoObject");
-const localStorage = require("local-storage");
+const { upload } = require("./UploadsControllers");
+
 const userActive = {
   username: undefined,
   id: undefined,
@@ -67,6 +68,14 @@ const UserControllers = {
         const newAccount = new userDB(req.body);
         console.log("create accout success", newAccount);
         newAccount.save();
+        upload(req, res, function (err) {
+          if (err) {
+            // ERROR occurred (here it can be occurred due
+            // to uploading image of size greater than
+            // 1MB or uploading different file type)
+            return res.send(err);
+          }
+        });
         return res.redirect("/");
       }
     });
@@ -77,6 +86,15 @@ const UserControllers = {
       res.render("user/users", {
         user: utilsConvertoObject.mutilyToObject(user),
       });
+    });
+  },
+
+  //delete user /user/account/delete/:id
+  deleteAccount(req, res) {
+    userDB.findOneAndDelete({ _id: req.params.id, admin: false }, (err, it) => {
+      if (err) return res.send(err);
+      console.log(it);
+      return res.redirect("/");
     });
   },
 

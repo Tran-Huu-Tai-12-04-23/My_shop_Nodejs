@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>List account</h1>
+  <ul>
+    {{#each user}}
+    <br>
+    <li>
+        Username : {{this.username}}  
+        <br>
+        Admin: {{this.admin}}
+        <div>
+          <button class="btn__delete__account" data-id="{{this._id}}">Delete</button> 
+          <button class="btn__change__password" data-id="{{this._id}}">Change Password</button>
+        </div>
+        <br>
+    </li>
+    {{/each}}
+  </ul>
+</div>
+
+<form class="form__change__password" method="POST"></form>
+<form class="form__delete__account" method="POST"></form>
+<script>
+  const btnDeleteAccount = $('.btn__delete__account');
+  const btnChangePassword = $('.btn__change__password');
+  const formDeleteAccount = $('.form__delete__account');
+  const formChangePassword = $('.form__change__password');
+  btnDeleteAccount.click( function() {
+    const dataID = $(this).attr('data-id');
+    formDeleteAccount.attr("action", `/user/account/delete/${dataID}?_method=DELETE`)
+    formDeleteAccount.submit();
+  })
+</script>
