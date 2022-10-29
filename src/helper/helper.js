@@ -46,5 +46,8 @@ helper = {
   showNumberCart: () => {
     return "";
   },
+  getIdUser: () => {
+    return userActive.id;
+  },
 };
 module.exports = helper;

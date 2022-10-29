@@ -5,6 +5,14 @@ const userMiddleware = require("../middelware/userMiddleware");
 
 //[delete] account /user/account/delete/:id
 router.delete("/user/account/delete/:id", UserControllers.deleteAccount);
+//get /user/account/edit/:id
+router.get(
+  "/user/account/edit/:id",
+  userMiddleware.userLogin,
+  UserControllers.editAccount
+);
+//put /user/account/edit/:id
+router.put("/user/account/change_pass/:id", UserControllers.updataPass);
 //[get] logout
 router.get("/logout", UserControllers.logout);
 //[get] form regester

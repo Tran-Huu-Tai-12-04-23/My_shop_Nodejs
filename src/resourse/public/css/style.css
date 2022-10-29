@@ -349,3 +349,16 @@ li {
   background-color: #ee4d2d;
   color: #fff;
 }
+
+.btn__header__change__pass {
+  border: none;
+  padding: 2px;
+  margin-left: 12px;
+  border-radius: 12px;
+  background-color: rgb(33, 121, 175);
+  color: #fff;
+  cursor: pointer;
+}
+.btn__header__change__pass:hover {
+  background-color: #475cd3;
+}

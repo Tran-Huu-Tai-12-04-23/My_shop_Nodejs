@@ -93,11 +93,64 @@ const UserControllers = {
   deleteAccount(req, res) {
     userDB.findOneAndDelete({ _id: req.params.id, admin: false }, (err, it) => {
       if (err) return res.send(err);
-      console.log(it);
-      return res.redirect("/");
+      productsDB.deleteMany({ authorID: it._id }, (err, data) => {
+        if (err) return res.send(err);
+        console.log("data deleted" + data);
+        console.log("check " + it);
+        return res.redirect("/");
+      });
     });
   },
-
+  //put user /user/account/edit/:id
+  editAccount(req, res) {
+    userDB
+      .findOne({ _id: req.params.id })
+      .then((user) => {
+        if (user) {
+          return res.render("user/editPass", {
+            user: utilsConvertoObject.singleToObject(user),
+          });
+        } else {
+          return res.send("can't find account ");
+        }
+      })
+      .catch((err) => {
+        return res.send(err);
+      });
+  },
+  updataPass(req, res) {
+    userDB
+      .findOne({ _id: req.params.id })
+      .then((user) => {
+        if (user) {
+          if (user.password === req.body.password) {
+            return req.body.newpassword;
+          } else {
+            return res.send("password incorrect !!!");
+          }
+        }
+      })
+      .then((password) => {
+        if (password === req.body.confirmpassword) {
+          userDB
+            .updateOne(
+              { _id: req.params.id },
+              {
+                password: req.body.newpassword,
+              }
+            )
+            .then((data) => {
+              return res.redirect("/");
+            })
+            .catch((err) => {
+              return res.send(err);
+            });
+        }
+      })
+      .catch((err) => {
+        return res.send(err);
+      });
+  },
   //[get] view create nnew item of user:id
   create(req, res) {
     res.render("user/createitem");

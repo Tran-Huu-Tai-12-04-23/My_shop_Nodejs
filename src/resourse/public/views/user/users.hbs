@@ -17,7 +17,7 @@
   </ul>
 </div>
 
-<form class="form__change__password" method="POST"></form>
+<form class="form__change__password" method="GET"></form>
 <form class="form__delete__account" method="POST"></form>
 <script>
   const btnDeleteAccount = $('.btn__delete__account');
@@ -29,4 +29,10 @@
     formDeleteAccount.attr("action", `/user/account/delete/${dataID}?_method=DELETE`)
     formDeleteAccount.submit();
   })
+
+  btnChangePassword.click( function() {
+    const dataID = $(this).attr('data-id');
+    formChangePassword.attr("action", `/user/account/edit/${dataID}`);
+    formChangePassword.submit();
+  });
 </script>
