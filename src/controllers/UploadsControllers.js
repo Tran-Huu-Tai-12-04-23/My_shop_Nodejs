@@ -1,12 +1,15 @@
 const multer = require("multer");
+const appRoot = require("app-root-path");
+const path = require("path");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     // Uploads is the Upload_folder_name
-    cb(null, "uploads");
+    console.log(appRoot);
+    cb(null, appRoot + "\\src\\resourse\\public\\uploads");
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + "-" + Date.now() + ".jpg");
+    cb(null, req.body.username + "_avatar" + ".jpg");
   },
 });
 
@@ -16,6 +19,9 @@ const maxSize = 1 * 1000 * 1000;
 
 const upload = multer({
   storage: storage,
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + ".jpg");
+  },
   limits: { fileSize: maxSize },
   fileFilter: function (req, file, cb) {
     // Set the filetypes, it is optional
@@ -36,9 +42,6 @@ const upload = multer({
   },
 
   // mypic is the name of file attribute
-}).single("mypic");
+});
 
-module.exports = {
-  storage,
-  upload,
-};
+module.exports = upload;

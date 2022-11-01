@@ -1,7 +1,8 @@
 const userDB = require("../model/users");
 const productsDB = require("../model/products");
 const utilsConvertoObject = require("../util/covertoObject");
-const { upload } = require("./UploadsControllers");
+const ImagesStore = require("../model/ImagesStore");
+const fs = require("fs");
 
 const userActive = {
   username: undefined,
@@ -65,17 +66,20 @@ const UserControllers = {
           "can't create account , because confirmpassword incorrect!!!"
         );
       } else {
+        const img = fs.readFileSync(req.file.path);
+        const encode_image = img.toString("base64");
+        const newImages = new ImagesStore({
+          nameImage: req.body.username + "_avatar" + ".jpg",
+          img: {
+            data: Buffer.from(encode_image, "base64"),
+            contentType: req.file.mimetype,
+          },
+        });
+        newImages.save();
         const newAccount = new userDB(req.body);
         console.log("create accout success", newAccount);
         newAccount.save();
-        upload(req, res, function (err) {
-          if (err) {
-            // ERROR occurred (here it can be occurred due
-            // to uploading image of size greater than
-            // 1MB or uploading different file type)
-            return res.send(err);
-          }
-        });
+
         return res.redirect("/");
       }
     });

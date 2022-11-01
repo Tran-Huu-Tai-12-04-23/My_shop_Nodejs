@@ -4,7 +4,7 @@ const cartStoreDB = require("../model/cartStore");
 helper = {
   showuser: () => {
     if (userActive.username != undefined) {
-      return "hi, " + userActive.username;
+      return `<p>hi, ${userActive.username}</p>`;
     } else {
       return "khách";
     }
@@ -47,7 +47,15 @@ helper = {
     return "";
   },
   getIdUser: () => {
-    return userActive.id;
+    if (userActive.username != undefined && userActive.id != undefined) {
+      return `<a
+      class="btn__header__change__pass"
+      href="/user/account/edit/${userActive.id}"
+      data-id=""
+      >Change Password</a>`;
+    } else {
+      return "";
+    }
   },
 };
 module.exports = helper;

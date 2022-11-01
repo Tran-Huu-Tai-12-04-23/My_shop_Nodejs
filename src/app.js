@@ -3,10 +3,9 @@ const mainRouter = require("./route/mainRoute");
 const { engine } = require("express-handlebars");
 const connectMgdb = require("./config/connectuserDb");
 const methodOverride = require("method-override");
-const bodyParser = require("body-parser");
 const helper = require("./helper/helper");
 const path = require("path");
-const multer = require("multer");
+const ImagesStore = require("./model/ImagesStore");
 
 app = express();
 // use static file
@@ -42,4 +41,16 @@ connectMgdb();
 
 app.listen(port, () => {
   console.log(`app listening on http://localhost:${port}`);
+});
+
+app.get("/photo", (req, res) => {
+  ImagesStore.findOne({})
+    .then((result) => {
+      return res.render("img", {
+        result: result.toObject(),
+      });
+    })
+    .catch((err) => {
+      return res.send(err);
+    });
 });
