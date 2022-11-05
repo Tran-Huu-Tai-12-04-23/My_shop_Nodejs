@@ -1,0 +1,142 @@
+.wrap__form {
+  min-width: 300px;
+  width: 450px;
+  height: 620px;
+  min-height: 570px;
+  background-color: var(--background__btn);
+  margin: auto;
+  transform: translateY(25%);
+  border-radius: 12px;
+  padding: 24px;
+  overflow: hidden;
+}
+.form__create {
+  display: flex;
+  flex-direction: column;
+  animation: showForm 0.5s ease-in-out;
+}
+@keyframes showForm {
+  0% {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.form__create > div {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background-color: rgba(81, 121, 201, 0.6);
+  margin: 24px 6px;
+  border-radius: 12px;
+  position: relative;
+}
+.form__create .icon__form {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  width: 40%;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.form__create div input:focus + .icon__form {
+  transform: translate(-10px, -250%);
+}
+
+.form__create div input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: rgba(81, 121, 201, 0);
+
+  z-index: 100;
+  color: #fff;
+  font-size: 24px;
+}
+
+.title__form {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.button__form__submit,
+.button__login {
+  padding: 12px 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+.button__form__submit:hover,
+.button__form:hover {
+  background-color: rgba(26, 30, 38, 0.5);
+}
+.icon__pass {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.icon__pass i {
+  display: none;
+  color: #fff;
+}
+
+.form__create nav > label {
+  color: #fff;
+}
+.button__form {
+  width: 100px;
+  padding: 12px;
+  float: right;
+  background-color: var(--search__color);
+}
+.button__form:hover {
+  background-color: #1c64ec;
+}
+div.nav__register {
+  margin: 24px 0;
+  width: 52%;
+  background-color: transparent;
+  padding: 0;
+  float: right;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
+}
+
+div.nav__login {
+  margin: 24px 0;
+  width: 36%;
+  background-color: transparent;
+  padding: 0;
+  float: right;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
+}
+div.nav__login > a,
+div.nav__register > a {
+  color: #ccc;
+  text-decoration: none;
+}
+div.nav__register > a:hover {
+  color: #1c64ec;
+}
+.show__validation {
+  position: absolute;
+  bottom: -40%;
+}
+.error {
+  color: red;
+}
+.success {
+  color: rgb(114, 196, 114);
+}

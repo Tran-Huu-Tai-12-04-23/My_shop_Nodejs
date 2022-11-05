@@ -1,4 +1,4 @@
-<html lang="en">
+{{!-- <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -40,7 +40,6 @@
           <ul class="navbar-nav mr-auto">
             {{{showLoginRegester}}}
             {{{showLogOut}}}
-
             <li class="nav-item">
               <a class="nav-link" href="/allusers">ListAccount</a>
             </li>
@@ -49,8 +48,11 @@
             </li>
             {{{showDetailMyProduct}}}
           </ul>
-          {{{showuser}}}
-          {{{getIdUser}}}
+          <div class="infor__user">
+            {{{showuser}}}
+            {{{showAvatar}}}
+          </div>
+          {{{showChangePass}}}
 
           <a href="/user/cart/store"><i
               class="bx bx-cart-alt icon__carts"
@@ -65,5 +67,88 @@
     <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
     ></script>
+  </body>
+</html> --}}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/resetcss.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/form.css" />
+    <script src="/js/index.js"></script>
+    {{! <link rel="stylesheet" href="/css/style.css" /> }}
+
+  </head>
+
+  <body>
+    <div id="wrap">
+      <div class="header container">
+        <div class="header__util">
+          <a href="/" class="name__shop">WebShop</a>
+          <div class="header__search">
+            <input
+              type="search"
+              name="search"
+              class="input__search"
+              placeholder="Search"
+            />
+            <div class="search__nav">
+              <i class="icon__search bx bx-search"></i>
+              <!-- <label for="search">Search</label> -->
+            </div>
+          </div>
+          <div class="header__wallet">
+            <i class="bx bx-coin-stack icon__wallet"></i>
+            <h1>Coins</h1>
+            <span>123.222</span>
+          </div>
+        </div>
+        <div class="header__info">
+          <i class="bx bxs-shopping-bag"></i>
+          <i class="bx bxs-heart"></i>
+          <i class="bx bxs-bell"></i>
+          <div class="avatar">
+            <i class="bx bx-menu icon__active">
+              <ul class="menu__user">
+                {{{showLoginRegister}}}
+                {{{showChangePass}}}
+                <a href="">
+                  <i class="bx bx-user"></i>
+                  <li href="">Profile</li>
+                </a>
+                {{{showLogOut}}}
+                <i class="bx bx-x icon__close"></i>
+              </ul>
+            </i>
+
+            {{{showAvatar}}}
+            {{{showuser}}}
+          </div>
+        </div>
+      </div>
+
+      {{{body}}}
+    </div>
+
+    <script src="/js/validation.js"></script>
+    <script>
+      validation("#form__login__validate");
+      validation("#form__register__validate");
+    </script>
   </body>
 </html>

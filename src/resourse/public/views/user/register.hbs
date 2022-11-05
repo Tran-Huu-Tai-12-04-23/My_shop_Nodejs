@@ -1,0 +1,114 @@
+{{! <div class="container mt-4">
+  <h3>Regester now?</h3>
+
+  <form method="POST" enctype="multipart/form-data" action="/register/store">
+    <div class="form-group">
+      <label for="username">username</label>
+      <input type="text" class="form-control" id="username" name="username" />
+    </div>
+    <div class="form-group">
+      <label for="password">password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+      />
+    </div>
+    <div class="form-group">
+      <label for="confirmpassword">confirmpassword</label>
+      <input
+        type="password"
+        class="form-control"
+        id="confirmpassword"
+        name="confirmpassword"
+      />
+    </div>
+    <div class="form-group">
+      <label for="avatar">avatar</label>
+      <input type="file" class="form-control" id="avatar" name="avatar" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create account</button>
+  </form>
+</div> }}
+
+<div class="wrap__form mt_height">
+  <form
+    id="form__register__validate"
+    class="form__create form__login"
+    method="POST"
+    enctype="multipart/form-data"
+    action="/register/store"
+  >
+    <h1 class="title__form">Register</h1>
+    <div>
+      <input
+        class="input__form"
+        type="text"
+        name="username"
+        placeholder=""
+        rules="required"
+      />
+      <span class="show__validation hidden error"></span>
+      <div class="icon__form">
+        <i class="bx bx-user"></i>
+        <label for="username">User name</label>
+      </div>
+    </div>
+    <div>
+      <input
+        class="input__form"
+        type="password"
+        name="password"
+        placeholder=""
+        rules="required|min:6|pass"
+      />
+      <span class="show__validation hidden error"></span>
+      <div class="icon__form">
+        <i class="bx bx-lock-alt"></i>
+        <label for="password">Enter password</label>
+      </div>
+      <div class="icon__pass">
+        <i class="fa-regular fa-eye show__pass"></i>
+        <i class="fa-regular fa-eye-slash hidden__pass"></i>
+      </div>
+    </div>
+    <div>
+      <input
+        class="input__form"
+        type="password"
+        name="confirmpassword"
+        placeholder=""
+        rules="required|min:6|pass"
+      />
+      <span class="show__validation hidden error"></span>
+      <div class="icon__form">
+        <i class="bx bx-lock-alt"></i>
+        <label for="confirmpassword">Confirm password</label>
+      </div>
+      <div class="icon__pass">
+        <i class="fa-regular fa-eye show__pass"></i>
+        <i class="fa-regular fa-eye-slash hidden__pass"></i>
+      </div>
+    </div>
+    <div class="">
+      <label for="avatar">avatar</label>
+      <input type="file" class="form-control" id="avatar" name="avatar" />
+    </div>
+    <nav class="mt_12 mb_24">
+      <input type="checkbox" class="input__remember" placeholder=" " />
+      <label for="username">Remember me</label>
+    </nav>
+
+    <button type="submit " class="button__primary button__form__submit">
+      Submit
+    </button>
+    <div class="nav__register">
+      <a href="">Have you account?</a>
+      <button type="submit " class="button__primary button__login button__form">
+        Login
+      </button>
+    </div>
+  </form>
+</div>

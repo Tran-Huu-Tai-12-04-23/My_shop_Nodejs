@@ -4,9 +4,9 @@ const cartStoreDB = require("../model/cartStore");
 helper = {
   showuser: () => {
     if (userActive.username != undefined) {
-      return `<p>hi, ${userActive.username}</p>`;
+      return `<span class="name__user">hi, ${userActive.username}</span>`;
     } else {
-      return "khách";
+      return `<span class="name__user">Khách</span>`;
     }
   },
   showDetailMyProduct: () => {
@@ -22,40 +22,46 @@ helper = {
   },
   showLogOut: () => {
     if (userActive.username != undefined) {
-      return `<li class="nav-item">
-      <a class="nav-link" href="/logout">logout</a>
-    </li>`;
+      return `<a href="/logout">
+      <i class="bx bx-log-out"></i>
+      <li href="">Log Out</li>
+    </a>`;
     } else {
       return "";
     }
   },
-  showLoginRegester: () => {
+  showLoginRegister: () => {
     if (userActive.username != undefined) {
       return ``;
     } else {
-      return `
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Login</a>
-      </li>
-      <li class="nav-item active">
-            <a class="nav-link" href="/regester">Regester
-            </a>
-      </li>`;
+      return `<a href="/login">
+                  <i class="bx bx-log-in"></i>
+                  <li >Login</li>
+                </a>
+                <a href="/register">
+                  <i class="bx bx-edit-alt"></i>
+                  <li >Register</li>
+                </a>`;
     }
   },
   showNumberCart: () => {
     return "";
   },
-  getIdUser: () => {
+  showChangePass: () => {
     if (userActive.username != undefined && userActive.id != undefined) {
-      return `<a
-      class="btn__header__change__pass"
-      href="/user/account/edit/${userActive.id}"
-      data-id=""
-      >Change Password</a>`;
+      return `<a href=''>
+        <i class='bx bx-user'></i>
+        <li href='/user/account/edit/${userActive.id}'>Change Password</li>
+      </a>`;
     } else {
       return "";
     }
+  },
+  showAvatar: () => {
+    if (userActive.id != undefined && userActive.username != undefined) {
+      return `<img src="/uploads/${userActive.username}_avatar.jpg" alt="" class="avatar__img" />`;
+    }
+    return `<img src="/uploads/default.jpg" alt="" class="avatar__img" />`;
   },
 };
 module.exports = helper;

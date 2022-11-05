@@ -3,6 +3,7 @@ const productsDB = require("../model/products");
 const utilsConvertoObject = require("../util/covertoObject");
 const ImagesStore = require("../model/ImagesStore");
 const fs = require("fs");
+const path = require("path");
 
 const userActive = {
   username: undefined,
@@ -14,14 +15,30 @@ var countCartStore = 0;
 const UserControllers = {
   //get home
   getHome(req, res) {
-    productsDB.find({ delete: false }, (err, products) => {
-      if (err) return res.send(err);
-      return res.render("home", {
-        products: utilsConvertoObject.mutilyToObject(products),
-      });
-    });
+    let search = "";
+    let search2 = "";
+    if (req.query.search != undefined) {
+      search = req.query.search;
+      search2 =
+        req.query.search.charAt(0).toUpperCase() + req.query.search.slice(1);
+    }
+    productsDB.find(
+      {
+        delete: false,
+        $or: [
+          { description: { $regex: ".*" + search + ".*" } },
+          { description: { $regex: ".*" + search2 + ".*" } },
+        ],
+      },
+      (err, products) => {
+        if (err) return res.send(err);
+        return res.render("home", {
+          products: utilsConvertoObject.mutilyToObject(products),
+        });
+      }
+    );
   },
-  // login and regester
+  // login and register
   login(req, res) {
     res.render("user/login");
   },
@@ -53,11 +70,11 @@ const UserControllers = {
       }
     });
   },
-  regester(req, res) {
-    res.render("user/regester");
+  register(req, res) {
+    res.render("user/register");
   },
   // create a new account
-  regesterStore(req, res) {
+  registerStore(req, res) {
     userDB.findOne({ username: req.body.username }, (err, users) => {
       if (users) {
         return res.send("can't create account , because user already exists");

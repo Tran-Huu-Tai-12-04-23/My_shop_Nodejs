@@ -1,7 +1,8 @@
-<h1>
+{{! <h1>
   please login now, do you have account?
 </h1>
-<div class="container mt-4">
+
+<div style="margin-top: 100px;" class="container mt-4">
   <h3>Login now?</h3>
 
   <form method="POST" action="/login/checklogin">
@@ -20,5 +21,67 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div> }}
+
+<div class="wrap__form mt_height">
+  <form
+    id="form__login__validate"
+    class="form__create form__login"
+    action="/login/checklogin"
+    method="POST"
+  >
+    <h1 class="title__form">Login</h1>
+    <div>
+      <input
+        class="input__form"
+        type="text"
+        name="username"
+        placeholder=""
+        rules="required"
+      />
+      <span class="show__validation hidden error"></span>
+      <div class="icon__form">
+        <i class="bx bx-user"></i>
+        <label for="username">User name</label>
+      </div>
+    </div>
+    <div>
+      <input
+        class="input__form"
+        type="password"
+        name="password"
+        placeholder=""
+        rules="required|min:6"
+      />
+      <span class="show__validation hidden error"></span>
+      <div class="icon__form">
+        <i class="bx bx-lock-alt"></i>
+        <label for="password">Enter password</label>
+      </div>
+      <div class="icon__pass">
+        <i class="fa-regular fa-eye show__pass"></i>
+        <i class="fa-regular fa-eye-slash hidden__pass"></i>
+      </div>
+    </div>
+
+    <nav class="mt_12 mb_24">
+      <input type="checkbox" class="input__remember" placeholder=" " />
+      <label for="username">Remember me</label>
+    </nav>
+
+    <button type="submit " class="button__primary button__form__submit">
+      Submit
+    </button>
+    <div class="nav__login">
+      <a href="">Help?</a>
+      <a
+        href="/register"
+        type="submit "
+        class="button__primary button__form button__register"
+      >
+        Register
+      </a>
+    </div>
   </form>
 </div>

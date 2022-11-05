@@ -362,3 +362,22 @@ li {
 .btn__header__change__pass:hover {
   background-color: #475cd3;
 }
+.avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.full__width {
+  width: 100% !important;
+}
+.input__search {
+  width: 90%;
+  border: none;
+  padding: 12px;
+  border: 0.5px solid #ccc;
+}
+.form__search {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

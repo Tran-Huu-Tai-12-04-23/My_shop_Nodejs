@@ -1,10 +1,11 @@
-<nav class="navbar navbar-light bg-light">
-  <form class="form-inline">
+{{!-- <nav class="navbar navbar-light bg-light">
+  <form class="form__search row" action="/" method="GET">
     <input
-      class="form-control mr-sm-2"
+      class="input__search"
       type="search"
       placeholder="Search"
       aria-label="Search"
+      name="search"
     />
     <button
       class="btn btn-outline-success my-2 my-sm-0"
@@ -24,7 +25,7 @@
   </div>
   <div class="list__cart">
     {{#each products}}
-      <a style="color: #000;"href="/user/product/detail/{{this._id}}">
+      <a style="color: #000;" href="/user/product/detail/{{this._id}}">
         <div class="sub__item">
           <img src="{{this.link_image}}" alt="" />
           <span class="title__cart">
@@ -38,22 +39,101 @@
       </a>
     {{/each}}
   </div>
-</div>
+</div> --}}
 
 <form method="POST" action="" class="form__add__product"></form>
+
+<div class="wrap__content">
+  <div class="slider container">
+    <i class="bx bx-chevron-left icon__pre"></i>
+    <i class="bx bx-chevron-right icon__next"></i>
+    <div class="slider__list">
+      <div class="wrap__slider__list">
+        <img
+          class="slider__img"
+          src="https://cf.shopee.vn/file/4016f05ca91e2f581251fb2cbeaa0904_xxhdpi"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://cf.shopee.vn/file/7864458d23c0ca56db2d0a5d06341b7d_xxhdpi"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://cf.shopee.vn/file/895d75032eaa679113b54606a7acc297_xxhdpi"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://cf.shopee.vn/file/aa13ac9534502a7ff1d18250ffb0aad5_xxhdpi"
+          alt=""
+        />
+      </div>
+      <!-- <div class="nav__img">
+              <div class="active" data-id="1"></div>
+              <div data-id="2"></div>
+              <div data-id="3"></div>
+              <div data-id="4"></div>
+            </div> -->
+    </div>
+  </div>
+
+  <div class="content container">
+    <div class="content__navigation">
+      <ul>
+        <li class="active_nav">All Products</li>
+        <li>Top sales</li>
+        <li>Promo</li>
+        <li>La Crystal</li>
+        <li>Cleanizer</li>
+        <li>Tonnerb</li>
+        <li>Serumb</li>
+      </ul>
+    </div>
+
+    <div class="content__product">
+      {{#each products}}
+        {{!-- <a style="color: #000;" href="/user/product/detail/{{this._id}}">
+        <div class="sub__item">
+          <img src="{{this.link_image}}" alt="" />
+          <span class="title__cart">
+            {{this.description}}
+          </span>
+          <div class="footer__cart">
+            <span class="cost__cart">đ{{this.cost}}</span>
+            <button class="add__cart" data-id="{{this._id}}">Add cart</button>
+          </div>
+        </div>
+      </a> --}}
+        <a href="/user/product/detail/{{this._id}}" class="content__item">
+          <img src="{{this.link_image}}" alt="" />
+          <div class="content__item__info">
+            <div class="content__item__info__title">
+              <h5>Ban chai</h5>
+              <p>
+                {{this.description}}
+              </p>
+            </div>
+            <div class="content__item__info__icon">
+              <span> đ{{this.cost}}.000 </span>
+              <button class="button__primary">Buy</button>
+            </div>
+          </div>
+        </a>
+      {{/each}}
+
+    </div>
+  </div>
+</div>
 
 {{! linh detail product }}
 <script>
 
-  const btnAddCart = $('.add__cart');
-  const formAddProduct = $('.form__add__product');
-  console.log(formAddProduct); 
-
-  btnAddCart.click( function(e) {
-    e.preventDefault();
-    const idCartAdd = $(this).data('id');
-    formAddProduct.attr("action", `/user/cart/store/${idCartAdd}?_method=PUT`);
-    formAddProduct.submit();
-  })
+  const btnAddCart = $('.add__cart'); const formAddProduct =
+  $('.form__add__product'); console.log(formAddProduct); btnAddCart.click(
+  function(e) { e.preventDefault(); const idCartAdd = $(this).data('id');
+  formAddProduct.attr("action", `/user/cart/store/${idCartAdd}?_method=PUT`);
+  formAddProduct.submit(); })
 
 </script>

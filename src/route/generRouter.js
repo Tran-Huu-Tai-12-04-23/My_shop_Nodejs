@@ -19,13 +19,13 @@ router.put(
 );
 //[get] logout
 router.get("/logout", UserControllers.logout);
-//[get] form regester
-router.get("/regester", UserControllers.regester);
-// [post] get data user to regester
+//[get] form register
+router.get("/register", UserControllers.register);
+// [post] get data user to register
 router.post(
-  "/regester/store",
+  "/register/store",
   upload.single("avatar"),
-  UserControllers.regesterStore
+  UserControllers.registerStore
 );
 //[get] from loggin
 router.get("/login", UserControllers.login);
