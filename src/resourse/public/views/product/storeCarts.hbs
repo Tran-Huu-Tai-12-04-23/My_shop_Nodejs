@@ -1,4 +1,4 @@
-<div>
+{{!-- <div>
   <a
     style="color: rgb(46, 135, 171);
   font-size: 24px;"
@@ -73,4 +73,61 @@
         e.preventDefault();
     })
 
-</script>
+</script> --}}
+
+<div class="wrap__store mlr_100">
+  <div class="list__product">
+    <div class="list__product__header">
+      <ul class="list__product__header__nav">
+        <li>Product</li>
+        <li>Name</li>
+        <li>Unit Price</li>
+        <li>Quantity</li>
+        <li>Total</li>
+      </ul>
+
+    </div>
+    <div class="list__product__info">
+      <div class="list__product__info__item">
+        <div class="list__product__info__item__img">
+          <i class="bx bx-x icon__remove"></i>
+          <img
+            src="https://res.cloudinary.com/dev-empty/image/upload/c_scale,w_70/mldb9nwuukbq2jhzp1yu"
+            alt=""
+          />
+        </div>
+        <span class="list__product__info__item__name">Wireless Mouse</span>
+        <span class="list__product__info__item__cost">$170</span>
+        <div class="list__product__info__item__amount">
+          <span class="icon__p">-</span>
+          <span class="count__product">1</span>
+          <span class="icon__n">+</span>
+        </div>
+        <span class="list__product__info__item__cost">$170</span>
+      </div>
+    </div>
+  </div>
+  <div class="list__product__header__detail">
+    <h1>Cart Totals</h1>
+    <ul>
+      <li>
+        <span>Subtotal</span>
+        <span>$12</span>
+      </li>
+      <li>
+        <span>Shipping</span>
+        <span>$12</span>
+      </li>
+      <li>
+        <span>Toatl</span>
+        <span>$12</span>
+      </li>
+    </ul>
+
+    <h5><span>Payable Total</span>
+      <span>$24</span></h5>
+    <button class="list__product__header__detail__pay">
+      Proceed to Checkout
+    </button>
+  </div>
+</div>

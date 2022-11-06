@@ -124,16 +124,17 @@
       {{/each}}
 
     </div>
+
   </div>
 </div>
 
 {{! linh detail product }}
 <script>
 
-  const btnAddCart = $('.add__cart'); const formAddProduct =
-  $('.form__add__product'); console.log(formAddProduct); btnAddCart.click(
-  function(e) { e.preventDefault(); const idCartAdd = $(this).data('id');
-  formAddProduct.attr("action", `/user/cart/store/${idCartAdd}?_method=PUT`);
-  formAddProduct.submit(); })
+  const btnAddCart = $('.add__cart'); const formAddProduct
+  =$('.form__add__product'); console.log(formAddProduct);
+  btnAddCart.click(function(e) { e.preventDefault(); const idCartAdd =
+  $(this).data('id'); formAddProduct.attr("action",
+  `/user/cart/store/${idCartAdd}?_method=PUT`); formAddProduct.submit(); })
 
 </script>

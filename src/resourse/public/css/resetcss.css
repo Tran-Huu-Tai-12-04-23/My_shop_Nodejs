@@ -2,7 +2,9 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
+a {
+  text-decoration: none;
+}
 html,
 body,
 div,
@@ -152,4 +154,12 @@ table {
 }
 .mb_24 {
   margin-bottom: 24px;
+}
+.mlr_100 {
+  margin: 100px;
+  width: calc(100% -100 * 2px);
+}
+
+html {
+  font-family: poppins;
 }

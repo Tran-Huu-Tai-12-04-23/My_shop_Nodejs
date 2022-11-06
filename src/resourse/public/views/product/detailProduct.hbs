@@ -1,54 +1,47 @@
-
-<div class="wrap__detail item__detail">
-  <img
-    src="{{product.link_image}}"
-    alt=""
-  />
-  <div class="detail__content">
-    <div class="detail__content__des">
-      {{product.description}}
+<div class="modal__buy__product">
+  <div class="detail__buy container">
+    <div class="detail__buy__header">
+      <a href="/"><i class="bx bx-chevron-left"></i></a>
+      <a href="/user/cart/store">
+        <i class="bx bx-cart"></i>
+      </a>
     </div>
-    <h5 class="detail__cost">đ{{product.cost}}</h5>
-    <div class="choose__number__product">
-      <span>số lượng</span>
-      <div>
-        <span class="icon__pre">-</span>
-        <span class="count__product"></span>
-        <span class="icon__next">+</span>
+    <div class="deatail__buy__content">
+      <img src="{{product.link_image}}" alt="" />
+    </div>
+    <div class="detail__buy__icon">
+      <i class="bx bx-star"></i><i class="bx bx-star"></i><i
+        class="bx bx-star"
+      ></i><i class="bx bx-star"></i><i class="bx bx-star"></i>
+    </div>
+    <div class="detail__buy__info">
+      <div class="detail__buy__info__name">
+        <h1>{{product.nameproduct}}</h1>
+        <p>{{product.description}}
+        </p>
       </div>
-    </div>
-    <div class="button__detail">
-      <button class="button__add__cart">Add to cart</button>
-      <button class="button__buy__now">Buy now</button>
+      <div class="detail__buy__count">
+        <span>Amount </span>
+        <div class="control">
+          <span class="icon__p">-</span>
+          <span class="count__product">1</span>
+          <span class="icon__n">+</span>
+        </div>
+        <h5 class="detail__cost">đ {{product.cost}}</h5>
+      </div>
+      <div class="detail__buy__control">
+        <div class="button__detail__add button__add__cart " data-id="{{product._id}}">
+          <i class="bx bx-cart-add"></i>
+          <button>Add My Cart</button>
+        </div>
+        <button class="button__detail__buy" data-id="{{product._id}}">Buy Now</button>
+      </div>
     </div>
   </div>
 </div>
 
+
+<form method="POST" class="form__add__cart"></form>
 <script>
-
-    const iconPre = $('.icon__pre');
-    const iconNext = $('.icon__next');
-    const countProcut = $('.count__product');
-    const btnAddCart = $('.button__add__cart');
-
-    var count = 1;
-    countProcut.text(count);
-    iconPre.click( function() {
-        count --; 
-        if( count <= 0) {
-            count = 1;
-        }
-        countProcut.text(count);
-    })
-
-    iconNext.click(function() {
-        count ++;
-        countProcut.text(count);
-    })
-
-    btnAddCart.click( function(e) {
-        e.preventDefault();
-    })
-
 
 </script>
