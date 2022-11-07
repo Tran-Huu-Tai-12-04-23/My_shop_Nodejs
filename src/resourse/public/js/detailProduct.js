@@ -4,23 +4,38 @@ $(window).ready(function () {
   const countProcut = $(".count__product");
   const btnAddCart = $(".button__add__cart");
   const formAddCart = $(".form__add__cart");
-  var count = 1;
-  countProcut.text(count);
-  iconPre.click(function () {
-    count--;
-    if (count <= 0) {
-      count = 1;
-    }
-    countProcut.text(count);
+  const formAction = $(".form__action");
+  const iconRemove = $(".icon__remove");
+
+  iconPre.click(function (e) {
+    e.preventDefault();
+    var idProduct = $(this).data("id");
+    formAction.attr(
+      "action",
+      `/user/cart/store/delete/${idProduct}?_method=DELETE`
+    );
+    formAction.submit();
   });
-  iconNext.click(function () {
-    count++;
-    countProcut.text(count);
+  iconNext.click(function (e) {
+    e.preventDefault();
+    var idProduct = $(this).data("id");
+    formAction.attr("action", `/user/cart/store/${idProduct}?_method=PUT`);
+    formAction.submit();
   });
   btnAddCart.click(function (e) {
     e.preventDefault();
     var idProduct = $(this).data("id");
     formAddCart.attr("action", `/user/cart/store/${idProduct}?_method=PUT`);
     formAddCart.submit();
+  });
+
+  iconRemove.click(function () {
+    const idProduct = $(this).data("id");
+    formAction.attr(
+      "action",
+      `/user/cart/store/destroy/${idProduct}?_method=DELETE`
+    );
+
+    formAction.submit();
   });
 });

@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
+body {
+  overflow: auto;
+}
 :root {
   --height_header: 80px;
   --primary_color: #1c64ec;
@@ -586,6 +589,7 @@ i.bx.bx-x.icon__close:hover {
   border-radius: 24px;
   display: flex;
   justify-content: space-between;
+  margin-top: 150px;
 }
 .list__product {
   width: 68%;
@@ -614,6 +618,7 @@ i.bx.bx-x.icon__close:hover {
   z-index: 1000;
   -webkit-box-shadow: 5px 5px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
+  height: 300px;
 }
 .list__product__header__detail h1 {
   color: #fff;
@@ -649,7 +654,15 @@ i.bx.bx-x.icon__close:hover {
   cursor: pointer;
   background-color: var(--coins__color);
 }
-
+.list__product__info {
+  height: 60vh;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.list__product__info::-webkit-scrollbar {
+  display: none;
+}
 .list__product__info__item {
   margin-top: 30px;
   display: flex;
@@ -705,4 +718,5 @@ i.bx.bx-x.icon__close:hover {
 .list__product__info__item__img {
   width: 20%;
   transform: translateX(30%);
+  cursor: pointer;
 }

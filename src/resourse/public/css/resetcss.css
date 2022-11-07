@@ -4,6 +4,7 @@
 */
 a {
   text-decoration: none;
+  color: #fff;
 }
 html,
 body,
@@ -158,6 +159,10 @@ table {
 .mlr_100 {
   margin: 100px;
   width: calc(100% -100 * 2px);
+}
+
+.mt_100 {
+  margin-top: 100px;
 }
 
 html {

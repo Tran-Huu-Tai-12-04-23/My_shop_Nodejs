@@ -1,14 +1,18 @@
 .wrap__form {
-  min-width: 300px;
-  width: 450px;
-  height: 620px;
-  min-height: 570px;
+  min-width: 250px;
+  width: 300px;
+  /* height: 620px;
+  min-height: 570px; */
   background-color: var(--background__btn);
   margin: auto;
-  transform: translateY(25%);
   border-radius: 12px;
   padding: 24px;
   overflow: hidden;
+  position: fixed;
+  z-index: 1000000;
+  left: 50%;
+  top: calc(var(--height_header) + 4%);
+  transform: translateX(-50%);
 }
 .form__create {
   display: flex;
@@ -30,20 +34,24 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  padding: 6px 12px;
+  padding: 6px 6px;
   background-color: rgba(81, 121, 201, 0.6);
   margin: 24px 6px;
   border-radius: 12px;
   position: relative;
+}
+.icon__form label {
+  font-size: 12px;
 }
 .form__create .icon__form {
   position: absolute;
   top: 50%;
   left: 16px;
   transform: translateY(-50%);
-  width: 40%;
+  width: 60%;
   color: #fff;
   transition: all 0.3s ease-in-out;
+  font-size: 12px;
 }
 .form__create div input:focus + .icon__form {
   transform: translate(-10px, -250%);
@@ -54,22 +62,19 @@
   border: none;
   outline: none;
   background-color: rgba(81, 121, 201, 0);
-
   z-index: 100;
   color: #fff;
-  font-size: 24px;
+  font-size: 12px;
 }
 
 .title__form {
   color: #fff;
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 600;
   text-align: center;
-  margin-bottom: 24px;
 }
 .button__form__submit,
 .button__login {
-  padding: 12px 0;
   font-weight: 600;
   font-size: 16px;
 }
@@ -101,7 +106,8 @@
 }
 div.nav__register {
   margin: 24px 0;
-  width: 52%;
+  width: 80%;
+  padding: 6px;
   background-color: transparent;
   padding: 0;
   float: right;
@@ -126,17 +132,61 @@ div.nav__login > a,
 div.nav__register > a {
   color: #ccc;
   text-decoration: none;
+  width: 80%;
+  font-size: 12px;
 }
 div.nav__register > a:hover {
   color: #1c64ec;
 }
 .show__validation {
   position: absolute;
-  bottom: -40%;
+  bottom: -50%;
+  font-size: 12px;
+  font-weight: 500;
 }
 .error {
   color: red;
 }
 .success {
   color: rgb(114, 196, 114);
+}
+
+.input__avatar {
+  font-size: 3px;
+  background-color: var(--background__btn);
+  padding: 0;
+  width: 30%;
+  position: relative;
+}
+.input__avatar i {
+  position: absolute;
+  color: #fff;
+  font-size: 24px;
+}
+div.form__choose__options {
+  background-color: transparent;
+}
+.input__avatar > input {
+  background-color: #1c64ec;
+  border-radius: 24px;
+  cursor: pointer;
+}
+.input__avatar > input::before {
+  content: "Set avatar";
+  margin-right: 100%;
+  margin-left: 32px;
+  border-radius: 3px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.button__form__submit {
+  font-size: 12px;
+  padding: 6px;
+}
+.button__form {
+  font-size: 12px;
 }

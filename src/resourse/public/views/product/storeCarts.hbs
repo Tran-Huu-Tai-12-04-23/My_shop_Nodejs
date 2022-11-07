@@ -16,7 +16,7 @@
             <span>Phân Loại hàng: </span>
             <span>Túi zip</span>
           </div>
-          <span class="cost">đ{{this.cost}}</span>
+          <span class="cost">${{this.cost}}</span>
 
           <div style="cursor: pointer; user-select: none"class="nav__count">
             <span class="icon__pre">-</span>
@@ -88,23 +88,29 @@
 
     </div>
     <div class="list__product__info">
-      <div class="list__product__info__item">
-        <div class="list__product__info__item__img">
-          <i class="bx bx-x icon__remove"></i>
-          <img
-            src="https://res.cloudinary.com/dev-empty/image/upload/c_scale,w_70/mldb9nwuukbq2jhzp1yu"
-            alt=""
-          />
+      {{#each listItems}}
+        <div class="list__product__info__item">
+          <div class="list__product__info__item__img">
+            <i
+              class="bx bx-x icon__remove"
+              data-id="{{this.productID._id}}"
+            ></i>
+            <img src="{{this.productID.link_image}}" alt="" />
+          </div>
+          <span
+            class="list__product__info__item__name"
+          >{{this.productID.nameproduct}}</span>
+          <span class="list__product__info__item__cost">$
+            {{this.productID.cost}}</span>
+          <div class="list__product__info__item__amount">
+            <span data-id="{{this.productID._id}}" class="icon__p">-</span>
+            <span class="count__product">{{this.amount}}</span>
+            <span data-id="{{this.productID._id}}" class="icon__n">+</span>
+          </div>
+          <span class="list__product__info__item__cost total__cost">$
+            {{this.productID.cost}}</span>
         </div>
-        <span class="list__product__info__item__name">Wireless Mouse</span>
-        <span class="list__product__info__item__cost">$170</span>
-        <div class="list__product__info__item__amount">
-          <span class="icon__p">-</span>
-          <span class="count__product">1</span>
-          <span class="icon__n">+</span>
-        </div>
-        <span class="list__product__info__item__cost">$170</span>
-      </div>
+      {{/each}}
     </div>
   </div>
   <div class="list__product__header__detail">
@@ -112,22 +118,24 @@
     <ul>
       <li>
         <span>Subtotal</span>
-        <span>$12</span>
+        <span>$ {{sumTotals}}</span>
       </li>
       <li>
         <span>Shipping</span>
-        <span>$12</span>
+        <span>$ 24</span>
       </li>
       <li>
-        <span>Toatl</span>
-        <span>$12</span>
+        <span>Total</span>
+        <span>$ {{calTotals sumTotals}}</span>
       </li>
     </ul>
 
     <h5><span>Payable Total</span>
-      <span>$24</span></h5>
+      <span>$ {{calTotals sumTotals}}</span></h5>
     <button class="list__product__header__detail__pay">
       Proceed to Checkout
     </button>
   </div>
 </div>
+
+<form method="POST" class="form__action"></form>

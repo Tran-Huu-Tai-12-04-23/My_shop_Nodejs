@@ -1,6 +1,7 @@
 const { userActive } = require("../controllers/UserControllers");
 const products = require("../model/products");
 const cartStoreDB = require("../model/cartStore");
+const { countDocuments } = require("../model/users");
 helper = {
   showuser: () => {
     if (userActive.username != undefined) {
@@ -62,6 +63,9 @@ helper = {
       return `<img src="/uploads/${userActive.username}_avatar.jpg" alt="" class="avatar__img" />`;
     }
     return `<img src="/uploads/default.jpg" alt="" class="avatar__img" />`;
+  },
+  calTotals: (totals) => {
+    return totals + 24;
   },
 };
 module.exports = helper;

@@ -13,7 +13,12 @@ router.delete("/cart/store/delete/:id", CartController.deleteItem);
 router.put(
   "/cart/store/:id",
   userMiddleware.userLogin,
-  CartController.getProductInCart
+  CartController.putProductInCart
+);
+router.delete(
+  "/cart/store/destroy/:id",
+  userMiddleware.userLogin,
+  CartController.destroyItem
 );
 
 module.exports = router;
