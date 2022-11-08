@@ -1,27 +1,83 @@
-<div class="container mt-4">
-  <h3>Change Password</h3>
-
+<div class="wrap__form mt_height">
   <form
+    id="form__register__validate"
+    class="form__create form__login"
     method="POST"
     action="/user/account/change_pass/{{user._id}}?_method=PUT"
   >
-    <div class="form-group">
-      <label for="password">Password old</label>
-      <input type="text" class="form-control" id="name" name="password" />
-    </div>
-    <div class="form-group">
-      <label for="newpassword">Password new</label>
-      <input type="text" class="form-control" id="name" name="newpassword" />
-    </div>
-    <div class="form-group">
-      <label for="confirmpassword">Confirm New Password</label>
+    <h1 class="title__form">Update Password</h1>
+    <div>
       <input
+        class="input__form"
         type="text"
-        class="form-control"
-        id="name"
-        name="confirmpassword"
+        name="username"
+        placeholder=""
+        rules="required"
       />
+      <span class="show__validation hidden error"></span>
+      <div class="icon__form">
+        <i class="bx bx-user"></i>
+        <label for="username">User name</label>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
+    <div>
+      <input
+        class="input__form"
+        type="password"
+        name="password"
+        placeholder=""
+        rules="required|min:6"
+      />
+      <span class="show__validation hidden error"></span>
+      <div class="icon__form">
+        <i class="bx bx-lock-alt"></i>
+        <label for="password">Enter password</label>
+      </div>
+      <div class="icon__pass">
+        <i class="fa-regular fa-eye show__pass"></i>
+        <i class="fa-regular fa-eye-slash hidden__pass"></i>
+      </div>
+    </div>
+
+    <div>
+      <input
+        class="input__form"
+        type="password"
+        name="newpassword"
+        placeholder=""
+        rules="required|min:6"
+      />
+      <span class="show__validation hidden error"></span>
+      <div class="icon__form">
+        <i class="bx bx-lock-alt"></i>
+        <label for="newpassword">Enter new password</label>
+      </div>
+      <div class="icon__pass">
+        <i class="fa-regular fa-eye show__pass"></i>
+        <i class="fa-regular fa-eye-slash hidden__pass"></i>
+      </div>
+    </div>
+    <div>
+      <input
+        class="input__form"
+        type="password"
+        name="confirmpassword"
+        placeholder=""
+        rules="required|min:6"
+      />
+      <span class="show__validation hidden error"></span>
+      <div class="icon__form">
+        <i class="bx bx-lock-alt"></i>
+        <label for="confirmpassword">Confirm password</label>
+      </div>
+      <div class="icon__pass">
+        <i class="fa-regular fa-eye show__pass"></i>
+        <i class="fa-regular fa-eye-slash hidden__pass"></i>
+      </div>
+    </div>
+
+    <button type="submit " class="button__primary button__form__submit">
+      Submit
+    </button>
   </form>
 </div>

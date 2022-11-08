@@ -4,6 +4,12 @@ const userDB = require("../model/users");
 const { UserControllers } = require("../controllers/UserControllers");
 const userMiddleware = require("../middelware/userMiddleware");
 
+//[get] all users/ accounts
+router.get(
+  "/admin/allusers",
+  userMiddleware.checkAdmin,
+  UserControllers.getAllUsers
+);
 // [post ] create new item of user :id
 router.get(
   "/user/product/getProductEdit/:id",
@@ -14,7 +20,7 @@ router.get(
 router.put(
   "/user/product/edit/:id",
   userMiddleware.userLogin,
-  UserControllers.updataProduct
+  UserControllers.updateProduct
 );
 //[put] soft delete item of user :id
 router.put(
@@ -29,12 +35,12 @@ router.get(
   UserControllers.listProductDeleted
 );
 //[get] view create new item of user :idz
-router.get("/user/create", userMiddleware.userLogin, UserControllers.create);
+router.get("/user/create_new_item", userMiddleware.userLogin, UserControllers.createNewItem);
 //[get] all products
 router.get(
   "/user/product/store",
   userMiddleware.userLogin,
-  UserControllers.getAllProducts
+  UserControllers.getAllMyProducts
 );
 //[post] crete new product
 router.post("/user/create/store", UserControllers.storeCreate);

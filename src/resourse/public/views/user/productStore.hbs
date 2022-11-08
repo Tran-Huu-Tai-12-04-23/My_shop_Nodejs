@@ -1,64 +1,50 @@
-<div class="container row">
-  <h1>List products posted</h1>
+<form action="" class="form__action__my__cart" method="POST"></form>
+<div class="row mt_100 mb_24">
+  <h1 class="container title__my__cart">List product posted</h1>
   <a href="/user/product/listProductDeleted">
-    <i
-      style="
-    font-size: 32px;
-    line-height: 50px;
-    margin-left: 18px;
-    color: #d0011b;
-  "
-      class="bx bxs-trash-alt"
-    >
-      {{count}}
+    <i class="bx bx-trash-alt icon__trash">
+      <span>{{count}}</span>
     </i>
   </a>
+
 </div>
-<div class="container mt-4" style="display: flex;flex-wrap: wrap">
-  {{#each products}}
+<div class="container">
+  <div class="list__product__header">
+    <ul class="list__product__header__nav">
+      <li>Product</li>
+      <li>Name</li>
+      <li>Unit Price</li>
+      <li>Total</li>
+    </ul>
 
-    <div class="card ml-4 mt-4" style="width: 18rem;">
-      <img
-        class="card-img-top"
-        src="{{this.link_image}}"
-        alt="Card image cap"
-      />
-      <div class="card-body">
-        <h5 class="card-title">{{this.nameproduct}}</h5>
-        <p class="card-text">{{this.description}}</p>
-        <span
-          class="mb-4"
-          style="float: right;width: 100%;
-            color: #ee4d2d;
-          "
-        >đ{{this.cost}}.000</span>
-        <div class="btn__cart">
-          <div
-            class="container"
-            style="
-            display:flex;
-            height:38px;
-            justify-content: space-between;
-          "
-          >
-            <a
-              href="/user/product/getProductEdit/{{this._id}}"
-              class="btn btn-primary"
-            >Edit</a>
-            <form
-              method="POST"
-              action="/user/product/softdelete/{{this._id}}?_method=PUT"
-            >
-              <button type="submit" class="btn btn-primary">
-                Remove
-              </button>
-            </form>
-          </div>
-
+  </div>
+  <div class="list__product__info">
+    {{#each products}}
+      <div class="list__product__info__item">
+        <div class="list__product__info__item__img ml_32">
+          <i
+            class="bx bx-x icon__remove__my_product"
+            data-id="{{this._id}}"
+          ></i>
+          <img src="{{this.link_image}}" alt="" />
         </div>
+        <span
+          class="list__product__info__item__name ml_32"
+        >{{this.nameproduct}}</span>
+        <span class="list__product__info__item__cost">$
+          {{this.cost}}</span>
+        <span class="list__product__info__item__cost total__cost">$
+          {{this.cost}}</span>
       </div>
-    </div>
-
-  {{/each}}
-
+    {{/each}}
+  </div>
 </div>
+
+<script>
+  const formActionMycart = $('.form__action__my__cart'); const
+  iconRemoveMyProduct = $('.icon__remove__my_product');
+  iconRemoveMyProduct.click(function() { var idProduct = $(this).data("id");
+  formActionMycart.attr('action',
+  `/user/product/softdelete/${idProduct}?_method=PUT`);
+  formActionMycart.submit(); } );
+</script>

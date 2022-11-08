@@ -1,38 +1,3 @@
-{{! <div class="container mt-4">
-  <h3>Regester now?</h3>
-
-  <form method="POST" enctype="multipart/form-data" action="/register/store">
-    <div class="form-group">
-      <label for="username">username</label>
-      <input type="text" class="form-control" id="username" name="username" />
-    </div>
-    <div class="form-group">
-      <label for="password">password</label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        name="password"
-      />
-    </div>
-    <div class="form-group">
-      <label for="confirmpassword">confirmpassword</label>
-      <input
-        type="password"
-        class="form-control"
-        id="confirmpassword"
-        name="confirmpassword"
-      />
-    </div>
-    <div class="form-group">
-      <label for="avatar">avatar</label>
-      <input type="file" class="form-control" id="avatar" name="avatar" />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Create account</button>
-  </form>
-</div> }}
-
 <div class="wrap__form mt_height">
   <form
     id="form__register__validate"
@@ -104,10 +69,10 @@
       Submit
     </button>
     <div class="nav__register">
-      <a href="">Have you account?</a>
-      <button type="submit " class="button__primary button__login button__form">
+      <a href="" class="question__register">Have you account?</a>
+      <a href="/login" class="button__nav">
         Login
-      </button>
+      </a>
     </div>
   </form>
 </div>

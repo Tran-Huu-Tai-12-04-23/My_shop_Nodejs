@@ -10,13 +10,17 @@ helper = {
       return `<span class="name__user">Khách</span>`;
     }
   },
-  showDetailMyProduct: () => {
+  showOptionsUser: () => {
     if (userActive.username != undefined) {
-      return `<li class='nav-item'>
-          <a class='nav-link' href='/user/product/store'>
-            Show my products..
-          </a>
-        </li>`;
+      return `
+        <a href='/user/product/store'>
+        <i class='bx bx-cart-download'></i>
+        <li>Show my products..</li>
+      </a>
+      <a href='/user/create_new_item'>
+      <i class="fa-solid fa-plus"></i>
+        <li>Create new product</li>
+      </a>`;
     } else {
       return ``;
     }
@@ -50,9 +54,9 @@ helper = {
   },
   showChangePass: () => {
     if (userActive.username != undefined && userActive.id != undefined) {
-      return `<a href=''>
+      return `<a href='/user/account/edit/${userActive.id}'>
         <i class='bx bx-user'></i>
-        <li href='/user/account/edit/${userActive.id}'>Change Password</li>
+        <li>Change Password</li>
       </a>`;
     } else {
       return "";
@@ -66,6 +70,15 @@ helper = {
   },
   calTotals: (totals) => {
     return totals + 24;
+  },
+  showOptionsAdmin: () => {
+    if (userActive.admin == true) {
+      return `<a href='/admin/allusers'>
+      <i class='bx bxs-user-detail'></i>
+        <li>List users</li>
+      </a>`;
+    }
+    return "";
   },
 };
 module.exports = helper;

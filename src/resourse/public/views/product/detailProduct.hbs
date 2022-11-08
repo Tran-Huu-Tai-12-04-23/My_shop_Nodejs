@@ -1,47 +1,81 @@
 <div class="modal__buy__product">
   <div class="detail__buy container">
-    <div class="detail__buy__header">
-      <a href="/"><i class="bx bx-chevron-left"></i></a>
-      <a href="/user/cart/store">
-        <i class="bx bx-cart"></i>
-      </a>
-    </div>
     <div class="deatail__buy__content">
-      <img src="{{product.link_image}}" alt="" />
-    </div>
-    <div class="detail__buy__icon">
-      <i class="bx bx-star"></i><i class="bx bx-star"></i><i
-        class="bx bx-star"
-      ></i><i class="bx bx-star"></i><i class="bx bx-star"></i>
+      <div class="detail__buy__header hidden">
+        <a href="/"><i class="bx bx-chevron-left"></i></a>
+        <a href="/user/cart/store">
+          <i class="bx bx-cart"></i>
+        </a>
+      </div>
+      <div>
+        <img src="{{product.link_image}}" alt="" />
+      </div>
     </div>
     <div class="detail__buy__info">
-      <div class="detail__buy__info__name">
+      <div class="detail__buy__icon">
         <h1>{{product.nameproduct}}</h1>
-        <p>{{product.description}}
+        <div>
+          <i class="bx bx-star"></i><i class="bx bx-star"></i><i
+            class="bx bx-star"
+          ></i><i class="bx bx-star"></i><i class="bx bx-star"></i>
+        </div>
+      </div>
+      <div>
+        <p class="detail__buy__info__name">{{product.description}}
         </p>
-      </div>
-      <div class="detail__buy__count">
-        <span>Amount </span>
-        <div class="control">
-          <span class="icon__p">-</span>
-          <span class="count__product">1</span>
-          <span class="icon__n">+</span>
+
+        <div class="detail__buy__count">
+          <span>Amount </span>
+          <div class="control">
+            <span class="icon__p">-</span>
+            <span class="count__product">1</span>
+            <span class="icon__n">+</span>
+          </div>
+          <h5 class="detail__cost">đ {{product.cost}}</h5>
         </div>
-        <h5 class="detail__cost">đ {{product.cost}}</h5>
-      </div>
-      <div class="detail__buy__control">
-        <div class="button__detail__add button__add__cart " data-id="{{product._id}}">
-          <i class="bx bx-cart-add"></i>
-          <button>Add My Cart</button>
+        <div class="detail__buy__control">
+          <div
+            class="button__detail__add button__add__cart"
+            data-id="{{product._id}}"
+          >
+            <i class="bx bx-cart-add"></i>
+            <button>Add My Cart</button>
+          </div>
+          <button class="button__detail__buy" data-id="{{product._id}}">Buy Now</button>
         </div>
-        <button class="button__detail__buy" data-id="{{product._id}}">Buy Now</button>
       </div>
     </div>
   </div>
 </div>
 
-
 <form method="POST" class="form__add__cart"></form>
 <script>
+    const iconNext = $('.icon__n');
+    const iconPrev = $('.icon__p');
+    const valueCount = $('.count__product');
 
+
+    var countProduct = valueCount.text();
+    function handleCountProduct( options) {
+      if( options == 0 ) {
+        if( countProduct <= 1 ) {
+          countProduct = 1;
+          return 1;
+        }
+        countProduct = countProduct - 1;
+        return countProduct;
+      } else {
+        countProduct = countProduct + 1;
+        return countProduct ;
+      }
+    }
+    iconNext.click( function() {
+      const newcountProduct = handleCountProduct(1);
+      $(this).parent().children('.count__product').text( newcountProduct)
+    });
+
+    iconPrev.click( function() {
+      const newcountProduct = handleCountProduct(0);
+      $(this).parent().children('.count__product').text( newcountProduct)
+    });
 </script>

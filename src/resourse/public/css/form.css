@@ -73,6 +73,7 @@
   font-weight: 600;
   text-align: center;
 }
+
 .button__form__submit,
 .button__login {
   font-weight: 600;
@@ -119,7 +120,7 @@ div.nav__register {
 
 div.nav__login {
   margin: 24px 0;
-  width: 36%;
+  width: 50%;
   background-color: transparent;
   padding: 0;
   float: right;
@@ -129,13 +130,13 @@ div.nav__login {
   margin-left: auto;
 }
 div.nav__login > a,
-div.nav__register > a {
+div.nav__register > .question__register {
   color: #ccc;
   text-decoration: none;
   width: 80%;
   font-size: 12px;
 }
-div.nav__register > a:hover {
+div.nav__register > .question__register:hover {
   color: #1c64ec;
 }
 .show__validation {
@@ -182,11 +183,54 @@ div.form__choose__options {
   cursor: pointer;
   font-size: 10px;
 }
-
+.button__nav,
 .button__form__submit {
   font-size: 12px;
   padding: 6px;
+  border: none;
 }
 .button__form {
   font-size: 12px;
+}
+.button__nav {
+  background-color: var(--search__color);
+  padding: 12px 24px;
+  border-radius: 12px;
+  color: #fff;
+  min-width: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+.button__nav:hover {
+  background-color: var(--coins__color);
+}
+
+.wrap__forom__create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__create__item {
+  background-color: var(--search__color);
+  width: 80%;
+  border-radius: 24px;
+}
+.form_group {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+  color: var(--coins__color);
+}
+.form_group input {
+  width: 88%;
+  padding: 6px;
+  background-color: var(--background__btn);
+  outline: none;
+  border: none;
+  color: #fff;
+}
+.button__create {
+  background-color: #1c64ec;
+  padding:12px 32px;
 }

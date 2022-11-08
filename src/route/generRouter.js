@@ -31,8 +31,7 @@ router.post(
 router.get("/login", UserControllers.login);
 // [post] checklogin
 router.post("/login/checklogin", UserControllers.loginCheck);
-//[get] all users/ accounts
-router.get("/allusers", userMiddleware.checkAdmin, UserControllers.getAllUsers);
+
 // [get] home
 router.get("/", UserControllers.getHome);
 

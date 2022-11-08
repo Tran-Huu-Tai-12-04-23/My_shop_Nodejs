@@ -20,7 +20,7 @@ body {
 .container {
   padding-left: 48px;
   padding-right: 48px;
-  width: calc(100% - 48 * 2) px;
+  width: calc(100% - 48 * 2) px !important;
 }
 /*  css header  */
 .header {
@@ -149,6 +149,7 @@ body {
   display: none;
   animation: fadeInMenu 0.3s ease-in-out;
   z-index: 1000000;
+  box-shadow: 7px 9px 10px 7px #000;
 }
 .menu__user i {
   z-index: 1000;
@@ -427,36 +428,28 @@ i.bx.bx-x.icon__close:hover {
   position: relative;
 }
 .modal__buy__product {
-  position: absolute;
-  height: 100%;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  margin-top: calc(var(--height_header) + 24px);
   z-index: 100000;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
 }
 .detail__buy {
-  width: 500px;
-  height: 650px;
+  width: 100%;
   min-width: 400px;
   min-height: 500px;
   border-radius: 24px;
-  background-color: var(--search__color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .detail__buy__header {
   display: flex;
-  justify-content: space-between;
   padding: 12px;
 }
 .detail__buy__header i {
   color: #fff;
   font-size: 48px;
   border-radius: 24px;
+  width: 50%;
 }
 .detail__buy__header i:hover {
   color: var(--coins__color);
@@ -465,12 +458,13 @@ i.bx.bx-x.icon__close:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  width: 48%;
 }
 .deatail__buy__content img {
   display: block;
-  width: 60%;
+  width: 80%;
   border-radius: 24px;
-  margin: auto;
 }
 .deatail__buy__content img:hover {
   -webkit-box-shadow: 5px 5px 15px 5px #000000;
@@ -480,11 +474,12 @@ i.bx.bx-x.icon__close:hover {
 }
 
 .detail__buy__info {
-  margin-top: 24px;
-  width: 100%;
+  width: 48%;
 }
 .detail__buy__info .detail__buy__info__name {
-  color: #fff;
+  color: #ccc;
+  line-height: 24px;
+  margin: 50px 0;
 }
 .detail__buy__info__name h1 {
   font-size: 24px;
@@ -496,9 +491,20 @@ i.bx.bx-x.icon__close:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.detail__buy__icon {
+.detail__buy__icon i {
   margin-top: 24px;
   color: yellow;
+}
+.detail__buy__icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.detail__buy__icon h1 {
+  font-size: 24px;
+  color: #fff;
+  font-weight: 600;
 }
 .detail__buy__control {
   margin-top: 24px;
@@ -602,6 +608,9 @@ i.bx.bx-x.icon__close:hover {
   box-shadow: 5px 5px 15px 5px #000000;
   color: #fff;
 }
+.list__product__header li:hover {
+  color: var(--coins__color);
+}
 .list__product__header > ul {
   display: flex;
   justify-content: space-around;
@@ -679,6 +688,7 @@ i.bx.bx-x.icon__close:hover {
   width: 70px;
   height: 70px;
 }
+.icon__remove__my_product,
 .icon__remove {
   position: absolute;
   top: 50%;
@@ -720,3 +730,71 @@ i.bx.bx-x.icon__close:hover {
   transform: translateX(30%);
   cursor: pointer;
 }
+
+.title__my__cart {
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.icon__trash {
+  color: #fff;
+  font-size: 24px;
+}
+.icon__trash span {
+  color: var(--primary_color);
+}
+.icon__trash:hover {
+  color: var(--coins__color);
+  cursor: pointer;
+}
+
+.info__product div {
+  justify-content: space-between;
+  margin-top: 20px;
+  background-color: var(--background__btn);
+  padding: 24px;
+  border-radius: 24px;
+  color: #fff;
+}
+.user {
+  color: #fff;
+  margin: 12px;
+  padding: 12px;
+}
+.list__users {
+  justify-content: center;
+}
+
+.user__name {
+  margin: 12px;
+  width: 100%;
+}
+.user__amdin {
+  margin: 0 12px;
+  margin-bottom: 12px;
+  color: var(--coins__color);
+}
+.btn__change__password,
+.btn__delete__account {
+  width: 100%;
+  border-radius: 24px;
+  border: none;
+  margin: 12px 0;
+  padding: 12px;
+  color: #fff;
+}
+.btn__change__password {
+  background-color: var(--coins__color);
+}
+.btn__delete__account {
+  background-color: var(--primary_color);
+}
+
+.btn__change__password:hover {
+  background-color: var(--primary_color);
+}
+.btn__delete__account:hover {
+  background-color: red;
+}
+

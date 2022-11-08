@@ -118,7 +118,7 @@ const UserControllers = {
         if (err) return res.send(err);
         console.log("data deleted" + data);
         console.log("check " + it);
-        return res.redirect("/");
+        return res.redirect("/admin/allusers");
       });
     });
   },
@@ -144,6 +144,7 @@ const UserControllers = {
       .findOne({ _id: req.params.id })
       .then((user) => {
         if (user) {
+          console.log(user.password + "===" + req.body.password);
           if (user.password === req.body.password) {
             return req.body.newpassword;
           } else {
@@ -173,11 +174,19 @@ const UserControllers = {
       });
   },
   //[get] view create nnew item of user:id
-  create(req, res) {
+  createNewItem(req, res) {
     res.render("user/createitem");
   },
   //[post] create new item of user:id
   storeCreate(req, res) {
+    if (
+      req.body.linkimage === '' ||
+      req.body.name === '' ||
+      req.body.cost === '' ||
+      req.body.description === ''
+    ) {
+      return res.send(" : you must enter full filed ");
+    }
     productsDB.findOne({ nameproduct: req.body.name }, (err, product) => {
       if (err) {
         return res.send(err);
@@ -201,7 +210,7 @@ const UserControllers = {
   },
 
   //[get] user/product/store
-  getAllProducts(req, res) {
+  getAllMyProducts(req, res) {
     const count = productsDB.countDocuments({
       authorID: userActive.id,
       delete: true,
@@ -233,7 +242,7 @@ const UserControllers = {
   },
 
   //[put] put user/product/edit/:id
-  updataProduct(req, res) {
+  updateProduct(req, res) {
     const dataProducts = { authorID: userActive.id, ...req.body };
     productsDB.findByIdAndUpdate(req.params.id, dataProducts, (err, docs) => {
       if (err) return res.send(err);
@@ -279,7 +288,7 @@ const UserControllers = {
     );
   },
 
-  //[get] list product deleted
+  //[get] list product deleted "/user/product/listProductDeleted"
   listProductDeleted(req, res) {
     productsDB.find(
       {

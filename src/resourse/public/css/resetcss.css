@@ -168,3 +168,130 @@ table {
 html {
   font-family: poppins;
 }
+
+.full__width {
+  width: 100% !important;
+}
+
+.ml_32 {
+  margin-left: 32px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.space__item {
+  margin: 24px;
+}
+
+.bgclor {
+  background-color: var(--search__color);
+  border: 24px;
+  border-radius: 24px;
+}
+
+.title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+}
+.btn__force__delete__modal,
+.btn__close__modal,
+.btn__force__delete,
+.btn__restore {
+  padding: 12px;
+  border-radius: 24px;
+  border: none;
+  color: #fff;
+  margin: 0 12px;
+  cursor: pointer;
+  min-width: 100px;
+}
+.btn__force__delete__modal,
+.btn__force__delete {
+  background-color: red;
+}
+.btn__close__modal,
+.btn__restore {
+  background-color: var(--coins__color);
+}
+
+.btn__force__delete:hover,
+.btn__restore:hover {
+  background-color: var(--search__color);
+}
+.bx-arrow-back {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--primary_color);
+}
+.btn__back {
+  margin-right: 50px;
+  border: none;
+  border-radius: 24px;
+  background-color: var(--search__color);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+  color: var(--primary_color);
+}
+#modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100000;
+}
+.modal__wrapper {
+  background-color: var(--search__color);
+  width: 50%;
+  height: 150px;
+  border-radius: 24px;
+  cursor: pointer;
+  animation: fadeInModal 0.4s ease-in-out;
+}
+.modal__title {
+  text-align: center;
+  margin: 12px;
+}
+.modal__content {
+  color: var(--coins__color);
+  margin: 24px;
+}
+.modal__footer {
+  float: right;
+}
+.modal__footer {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.w_25 {
+  width: 26%;
+}
+.p_24 {
+  padding: 24px;
+}
+.right {
+  float: right;
+}

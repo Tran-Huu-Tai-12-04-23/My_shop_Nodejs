@@ -1,4 +1,4 @@
-<table class="table">
+{{!-- <table class="table mt_100">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -41,9 +41,50 @@
 </div>
 
 {{! modal  }}
+
+
+
+ --}}
+<form method="POST" class="form__delete"></form>
+<form method="POST" class="form__restore__product"></form>
+
+<div class="container table__list_product mt_100">
+  <div class="row">
+    <a href="/user/product/store">
+      <button class="btn__back">
+        <i class="bx bx-arrow-back"></i>
+        <span>Back</span>
+      </button>
+    </a>
+    <h1 class="title">List product deleted</h1>
+  </div>
+
+  <div class="info__product">
+    {{#each products}}
+      <div class="row container">
+        <h5>{{this.nameproduct}}</h5>
+        <h5>{{this.desciption}}</h5>
+        <h5>đ {{this.cost}}</h5>
+        <h5>{{this.link_image}}</h5>
+        <div class="row">
+          <button data-id="{{this._id}}" class="btn__restore">restore</button>
+          <button
+            data-id="{{this._id}}"
+            class="btn__force__delete"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >remove</button>
+        </div>
+      </div>
+
+    {{/each}}
+  </div>
+
+</div>
+
 <div id="modal" class="hidden">
-  <div class="modal__wrapper">
-    <div class="modal__title">
+  <div class="modal__wrapper container">
+    <div class="modal__title title">
       <h1>Delete?</h1>
     </div>
     <div class="modal__content">
@@ -56,48 +97,21 @@
   </div>
 </div>
 
-<form method="POST" class="form__delete"></form>
-<form method="POST" class="form__restore__product"></form>
-
 <script>
-  $(document).ready(function () {
-  const btnRestore = $(".btn__restore");
-  const btnForceDelete = $(".btn__force__delete");
-  const formRestore = $(".form__restore__product");
-  const btnCloseModal = $(".btn__close__modal");
-  const btnForceDeleteModal = $(".btn__force__delete__modal");
-  const formDelete = $(".form__delete");
-
-  console.log(btnForceDeleteModal);
-
-  btnRestore.click(function () {
-    const idproduct = $(this).data("id");
-    formRestore.attr(
-      "action",
-      `/user/product/restore/${idproduct}?_method=PUT`
-    );
-    formRestore.submit();
-  });
-
-  btnForceDelete.click(function () {
-    $("#modal").removeClass("hidden");
-    btnForceDeleteModal.attr("data-id", $(this).data("id"));
-  });
-
-  btnCloseModal.click(function () {
-    $("#modal").addClass("hidden");
-  });
-
-  btnForceDeleteModal.click(function () {
-    const idproductDelete = $(this).data("id");
-    console.log(idproductDelete);
-    formDelete.attr(
-      "action",
-      `
-        /user/product/destroy/${idproductDelete}?_method=DELETE `
-    );
-    formDelete.submit();
-  });
-});
+  $(document).ready(function () { const btnRestore = $(".btn__restore"); const
+  btnForceDelete = $(".btn__force__delete"); const formRestore =
+  $(".form__restore__product"); const btnCloseModal = $(".btn__close__modal");
+  const btnForceDeleteModal = $(".btn__force__delete__modal"); const formDelete
+  = $(".form__delete"); console.log(btnForceDeleteModal);
+  btnRestore.click(function () { const idproduct = $(this).data("id");
+  formRestore.attr( "action", `/user/product/restore/${idproduct}?_method=PUT`
+  ); formRestore.submit(); }); btnForceDelete.click(function () {
+  $("#modal").removeClass("hidden"); btnForceDeleteModal.attr("data-id",
+  $(this).data("id")); }); btnCloseModal.click(function () {
+  $("#modal").addClass("hidden"); }); btnForceDeleteModal.click(function () {
+  const idproductDelete = $(this).data("id"); console.log(idproductDelete);
+  formDelete.attr( "action", `
+  /user/product/destroy/${idproductDelete}?_method=DELETE ` );
+  formDelete.submit(); }); });
 
 </script>

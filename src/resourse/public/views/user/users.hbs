@@ -1,15 +1,15 @@
-<div class="container">
-  <h1>List account</h1>
-  <ul>
+<div class="container mt_100">
+  <h1 class="title">List account</h1>
+  <ul class="row list__users">
     {{#each user}}
     <br>
-    <li>
-        Username : {{this.username}}  
+    <li class="w_25 space__item bgclor user">
+        <h5 class="user__name">Username : {{this.username}}  </h5>
         <br>
-        Admin: {{this.admin}}
+        <h6 class="user__amdin"> Admin: {{this.admin}}</h6>
         <div>
-          <button class="btn__delete__account" data-id="{{this._id}}">Delete</button> 
           <button class="btn__change__password" data-id="{{this._id}}">Change Password</button>
+          <button class="btn__delete__account" data-id="{{this._id}}">Delete</button> 
         </div>
         <br>
     </li>
@@ -26,7 +26,7 @@
   const formChangePassword = $('.form__change__password');
   btnDeleteAccount.click( function() {
     const dataID = $(this).attr('data-id');
-    formDeleteAccount.attr("action", `/user/account/delete/${dataID}?_method=DELETE`)
+    formDeleteAccount.attr("action", `/user/account/delete/${dataID}?_method=DELETE`);
     formDeleteAccount.submit();
   })
 
