@@ -232,5 +232,22 @@ div.form__choose__options {
 }
 .button__create {
   background-color: #1c64ec;
-  padding:12px 32px;
+  padding: 12px 32px;
+}
+.button__edit {
+  position: absolute;
+  color: #fff;
+  padding: 12px 6px;
+  margin-right: 4px;
+  background-color: var(--primary_color);
+  border-radius: 12px;
+  right: 0;
+  bottom: -46%;
+  width: 10%;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000;
+}
+.button__edit:hover {
+  background-color: var(--coins__color);
+  cursor: pointer;
 }

@@ -4,6 +4,12 @@ const userDB = require("../model/users");
 const { UserControllers } = require("../controllers/UserControllers");
 const userMiddleware = require("../middelware/userMiddleware");
 
+//[get] user profile
+router.get(
+  "/user/profile",
+  userMiddleware.userLogin,
+  UserControllers.showProfile
+);
 //[get] all users/ accounts
 router.get(
   "/admin/allusers",
@@ -35,7 +41,11 @@ router.get(
   UserControllers.listProductDeleted
 );
 //[get] view create new item of user :idz
-router.get("/user/create_new_item", userMiddleware.userLogin, UserControllers.createNewItem);
+router.get(
+  "/user/create_new_item",
+  userMiddleware.userLogin,
+  UserControllers.createNewItem
+);
 //[get] all products
 router.get(
   "/user/product/store",

@@ -20,7 +20,12 @@ helper = {
       <a href='/user/create_new_item'>
       <i class="fa-solid fa-plus"></i>
         <li>Create new product</li>
-      </a>`;
+      </a>
+      <a href="/user/profile">
+        <i class="bx bx-user"></i>
+        <li href="">Profile</li>
+      </a>
+  `;
     } else {
       return ``;
     }

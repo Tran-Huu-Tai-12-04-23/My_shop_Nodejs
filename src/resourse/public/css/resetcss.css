@@ -2,6 +2,15 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+body {
+  -moz-user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
 a {
   text-decoration: none;
   color: #fff;

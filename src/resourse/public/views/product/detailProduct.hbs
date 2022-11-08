@@ -46,6 +46,38 @@
       </div>
     </div>
   </div>
+  <div class="info__shop">
+    <img src="/uploads/admin_avatar.jpg" alt="" class="avatar__shop">
+    <div class="content__shop">
+      <span class="title">Mini shop</span>
+      <div>
+        <i class='bx bx-chat'></i>
+         <span>Chat ngay</span>
+      </div>
+      <div>
+        <i class='bx bxs-store' ></i>
+        <span>Xem shop</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="box__comment">
+  <div class="icon__box__comment">
+    <i class='bx bx-message-rounded-minus'></i>
+  </div>
+  <div class="list__comment">
+     <img src="/uploads/admin_avatar.jpg" alt="" class="avatar__shop">
+     <div class="content__comment">
+      <span>Name</span>
+      <span>chị cách mua đi anh</span>
+     </div>
+      <i class='bx bx-heart' ></i>
+  </div>
+  <div  class="input__comment"> 
+    <input type="text">
+  <i class='bx bx-send' ></i>
+  </div>
 </div>
 
 <form method="POST" class="form__add__cart"></form>
@@ -55,7 +87,7 @@
     const valueCount = $('.count__product');
 
 
-    var countProduct = valueCount.text();
+    var countProduct = Number(valueCount.text());
     function handleCountProduct( options) {
       if( options == 0 ) {
         if( countProduct <= 1 ) {

@@ -1,45 +1,3 @@
-{{!-- <nav class="navbar navbar-light bg-light">
-  <form class="form__search row" action="/" method="GET">
-    <input
-      class="input__search"
-      type="search"
-      placeholder="Search"
-      aria-label="Search"
-      name="search"
-    />
-    <button
-      class="btn btn-outline-success my-2 my-sm-0"
-      type="submit"
-    >Search</button>
-  </form>
-</nav>
-<div class="content__cart">
-  <div class="nav__genre">
-    <ul>
-      <li><a href="#">Đồ gia dụng</a></li>
-      <li><a href="#">Đồ gia dụng</a></li>
-      <li><a href="#">Đồ gia dụng</a></li>
-      <li><a href="#">Đồ gia dụng</a></li>
-      <li><a href="#">Đồ gia dụng</a></li>
-    </ul>
-  </div>
-  <div class="list__cart">
-    {{#each products}}
-      <a style="color: #000;" href="/user/product/detail/{{this._id}}">
-        <div class="sub__item">
-          <img src="{{this.link_image}}" alt="" />
-          <span class="title__cart">
-            {{this.description}}
-          </span>
-          <div class="footer__cart">
-            <span class="cost__cart">đ{{this.cost}}</span>
-            <button class="add__cart" data-id="{{this._id}}">Add cart</button>
-          </div>
-        </div>
-      </a>
-    {{/each}}
-  </div>
-</div> --}}
 
 <form method="POST" action="" class="form__add__product"></form>
 
@@ -51,22 +9,82 @@
       <div class="wrap__slider__list">
         <img
           class="slider__img"
-          src="https://cf.shopee.vn/file/4016f05ca91e2f581251fb2cbeaa0904_xxhdpi"
+          src="https://www.inithtml.com/wp-content/uploads/2017/04/javascript.jpg"
           alt=""
         />
         <img
           class="slider__img"
-          src="https://cf.shopee.vn/file/7864458d23c0ca56db2d0a5d06341b7d_xxhdpi"
+          src="https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2018/11/what-is-html-3.webp"
           alt=""
         />
         <img
           class="slider__img"
-          src="https://cf.shopee.vn/file/895d75032eaa679113b54606a7acc297_xxhdpi"
+          src="https://www.nafrontendzie.pl/assets/featured/podstawy-react.png"
           alt=""
         />
         <img
           class="slider__img"
-          src="https://cf.shopee.vn/file/aa13ac9534502a7ff1d18250ffb0aad5_xxhdpi"
+          src="https://images.ctfassets.net/aq13lwl6616q/7cS8gBoWulxkWNWEm0FspJ/c7eb42dd82e27279307f8b9fc9b136fa/nodejs_cover_photo_smaller_size.png"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://tuhoclaptrinh.edu.vn/upload/post/16/06/70/tim-hieu-ve-vuejs-318818.jpg"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://evondev.com/wp-content/uploads/2020/04/css-tips-tricks.jpg"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://fptcloud.com/wp-content/uploads/2022/01/giai-dap-nhung-cau-hoi-ve-javascript-1.jpg"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://cafedev.vn/wp-content/uploads/2019/12/cafedev_java13.jpg"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://www.inithtml.com/wp-content/uploads/2017/04/javascript.jpg"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2018/11/what-is-html-3.webp"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://www.nafrontendzie.pl/assets/featured/podstawy-react.png"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://images.ctfassets.net/aq13lwl6616q/7cS8gBoWulxkWNWEm0FspJ/c7eb42dd82e27279307f8b9fc9b136fa/nodejs_cover_photo_smaller_size.png"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://tuhoclaptrinh.edu.vn/upload/post/16/06/70/tim-hieu-ve-vuejs-318818.jpg"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://evondev.com/wp-content/uploads/2020/04/css-tips-tricks.jpg"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://fptcloud.com/wp-content/uploads/2022/01/giai-dap-nhung-cau-hoi-ve-javascript-1.jpg"
+          alt=""
+        />
+        <img
+          class="slider__img"
+          src="https://cafedev.vn/wp-content/uploads/2019/12/cafedev_java13.jpg"
           alt=""
         />
       </div>
@@ -110,7 +128,7 @@
           <img src="{{this.link_image}}" alt="" />
           <div class="content__item__info">
             <div class="content__item__info__title">
-              <h5>Ban chai</h5>
+              <h5>{{this.nameproduct}}</h5>
               <p>
                 {{this.description}}
               </p>

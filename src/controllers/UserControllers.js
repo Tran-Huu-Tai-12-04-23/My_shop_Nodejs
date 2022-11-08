@@ -16,19 +16,15 @@ const UserControllers = {
   //get home
   getHome(req, res) {
     let search = "";
-    let search2 = "";
     if (req.query.search != undefined) {
       search = req.query.search;
-      search2 =
-        req.query.search.charAt(0).toUpperCase() + req.query.search.slice(1);
     }
     productsDB.find(
       {
         delete: false,
-        $or: [
-          { description: { $regex: ".*" + search + ".*" } },
-          { description: { $regex: ".*" + search2 + ".*" } },
-        ],
+        $or: [{ description: { $regex: search , 
+        '$options' : 'i'
+      } }],
       },
       (err, products) => {
         if (err) return res.send(err);
@@ -70,6 +66,10 @@ const UserControllers = {
       }
     });
   },
+  showProfile(req, res) {
+    return res.render("user/profile");
+  },
+
   register(req, res) {
     res.render("user/register");
   },
@@ -180,10 +180,10 @@ const UserControllers = {
   //[post] create new item of user:id
   storeCreate(req, res) {
     if (
-      req.body.linkimage === '' ||
-      req.body.name === '' ||
-      req.body.cost === '' ||
-      req.body.description === ''
+      req.body.linkimage === "" ||
+      req.body.name === "" ||
+      req.body.cost === "" ||
+      req.body.description === ""
     ) {
       return res.send(" : you must enter full filed ");
     }

@@ -3,49 +3,63 @@
 
   <form method="POST" action="/user/product/edit/{{product._id}}?_method=PUT">
 
-    <div class="form-group">
-      <label for="nameproduct">nameproduct</label>
-      <input
-        type="text"
-        class="form-control"
-        id="nameproduct"
-        name="nameproduct"
-        value="{{product.nameproduct}}"
-      />
-    </div>
+    <div class="wrap__forom__create container mt_100">
+      <div class="container form__create__item p_24">
+        <h3 class="title mb_24">Update item</h3>
 
-    <div class="form-group">
-      <label for="description">description</label>
-      <input
-        type="textarea"
-        class="form-control"
-        id="description"
-        name="description"
-        value="{{product.description}}"
-      />
-    </div>
+        <form method="POST" action="/user/create/store">
 
-    <div class="form-group">
-      <label for="cost">Cost</label>
-      <input
-        type="text"
-        class="form-control"
-        id="cost"
-        name="cost"
-        value="{{product.cost}}"
-      />
-    </div>
-    <div class="form-group">
-      <label for="link_image">Link Image</label>
-      <input
-        type="text"
-        class="form-control"
-        id="link_image"
-        name="link_image"
-        value="{{product.link_image}}"
-      />
-    </div>
+          <div class="form_group">
+            <label for="name">Name : </label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              value="{{product.nameproduct}}"
+            />
 
-    <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+
+          <div class="form_group">
+            <label for="description">Description : </label>
+            <input
+              type="textarea"
+              class="form-control"
+              id="description"
+              name="description"
+              value="{{product.description}}"
+            />
+          </div>
+
+          <div class="form_group">
+            <label for="cost">Cost : </label>
+            <input
+              type="text"
+              class="form-control"
+              id="cost"
+              name="cost"
+              value="{{product.cost}}"
+            />
+          </div>
+          <div class="form_group">
+            <label for="linkimage">Link image : </label>
+            <input
+              type="text"
+              class="form-control"
+              id="linkimage"
+              name="linkimage"
+              value="{{product.link_image}}"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="button__create button__nav right"
+          >Update</button>
+        </form>
+      </div>
+
+    </div>
   </form>
 </div>
