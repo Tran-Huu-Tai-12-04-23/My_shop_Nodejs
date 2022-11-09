@@ -3,7 +3,7 @@ const productsDB = require("../model/products");
 const utilsConvertoObject = require("../util/covertoObject");
 const ImagesStore = require("../model/ImagesStore");
 const fs = require("fs");
-const path = require("path");
+const UserOrdered = require("../model/UserOrdered");
 
 const userActive = {
   username: undefined,
@@ -22,9 +22,7 @@ const UserControllers = {
     productsDB.find(
       {
         delete: false,
-        $or: [{ description: { $regex: search , 
-        '$options' : 'i'
-      } }],
+        $or: [{ description: { $regex: search, $options: "i" } }],
       },
       (err, products) => {
         if (err) return res.send(err);
@@ -311,6 +309,29 @@ const UserControllers = {
         product: utilsConvertoObject.singleToObject(product),
       });
     });
+  },
+  // [get] user/product/bought
+  getProductUserBought(req, res) {
+    const listItemOrdered = UserOrdered.find({
+      userOrdered: userActive.id,
+    })
+      .populate("productID")
+      .then((item) => {
+        return res.render("user/productUserOrdered", {
+          item: utilsConvertoObject.mutilyToObject(item),
+        });
+      })
+      .catch((err) => res.send(err));
+  },
+  //[put] user/product/order/:id
+  userOrderProduct(req, res) {
+    const newOrdered = new UserOrdered({
+      userOrdered: userActive.id,
+      amount: req.body.amount,
+      productID: req.params.id,
+    });
+    newOrdered.save();
+    return res.redirect("/user/product/bought");
   },
 };
 

@@ -162,6 +162,9 @@ table {
 .mt_12 {
   margin-top: 12px;
 }
+.mt_24 {
+  margin-top: 24px;
+}
 .mb_24 {
   margin-bottom: 24px;
 }
@@ -303,4 +306,7 @@ html {
 }
 .right {
   float: right;
+}
+.flex {
+  display: flex!important;
 }

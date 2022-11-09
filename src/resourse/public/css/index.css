@@ -904,3 +904,137 @@ i.bx.bx-x.icon__close:hover {
   color: #ccc;
   margin-top: 4px;
 }
+
+.modal__nofitication {
+  width: 400px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--coins__color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 6px;
+  position: absolute;
+  top: 100px;
+  right: 10px;
+  animation: fadeInNofication 0.5s ease-in-out;
+  z-index: 100000000;
+}
+.modal__nofitication::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  height: 4px;
+  width: 0;
+  background-color: green;
+  border-radius: 6px;
+  animation: runNavNafication 2s linear;
+}
+.modal__nofitication i:first-child {
+  color: green;
+  font-weight: 600;
+  font-size: 24px;
+}
+.modal__nofitication i:last-child {
+  cursor: pointer;
+  font-size: 24px;
+  color: red;
+}
+
+@keyframes fadeInNofication {
+  from {
+    opacity: 0;
+    right: -100px;
+  }
+  to {
+    opacity: 1;
+    right: 10px;
+  }
+}
+
+@keyframes runNavNafication {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.wrap__ordered img {
+  width: 50px;
+  border-radius: 12px;
+}
+.list_ordered {
+  background-color: var(--search__color);
+  padding: 24px;
+  border-radius: 24px;
+  color: #fff;
+}
+.info__ordered {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.info__ordered> span {
+  width: 150px;
+  line-height: 24px;
+}
+.button__cancel_order {
+  background-color: var(--coins__color);
+  padding: 12px 24px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.button__cancel_order:hover {
+  background-color: green;
+}
+.button__cancel_order:hover .icon__cancle {
+  color: #fff;
+}
+.icon__cancle {
+  color: red;
+  font-weight: 600;
+  font-size: 24px;
+  margin-left: 12px;
+}
+.modi__ordered {
+  display: flex;
+  justify-content: space-evenly;
+  width: 25%;
+  position: relative;
+}
+.modi__ordered::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 10%;
+  right: 0;
+  width: 0;
+  height: 4px;
+  background-color: var(--primary_color);
+  border-radius: 24px;
+  animation: fadeInOrdered 1s ease-in-out infinite;
+}
+
+@keyframes fadeInOrdered {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+  50% {
+    pacity: 0.5;
+    width: 40%;
+  }
+  100% {
+    pacity: 1;
+    width: 80%;
+  }
+}

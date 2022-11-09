@@ -125,6 +125,7 @@ $(window).ready(function () {
 
   const buttonRegister = $(".button__register");
   const buttonlogin = $(".button__login");
+
   buttonRegister.click(function (e) {
     e.preventDefault();
     showFormOptions(buttonRegister);
@@ -137,5 +138,27 @@ $(window).ready(function () {
   function showFormOptions(element) {
     $(".form__create.form__login.hidden").removeClass("hidden");
     element.parent().parent().addClass("hidden");
+  }
+
+  const nafiCation = $(".modal__nofitication");
+  const iconCloseNafi = $(".icon__close__nofi");
+  const iconOrder = $(".button__detail__buy");
+
+  iconOrder.click(function () {
+    nafiCation.addClass("flex");
+    nafiCation.removeClass("hidden");
+  });
+  iconCloseNafi.click(function () {
+    handleNofication();
+  });
+  setInterval(() => {
+    handleNofication();
+  }, 3000);
+
+  function handleNofication() {
+    if (nafiCation.hasClass("flex")) {
+      nafiCation.addClass("hidden");
+      nafiCation.removeClass("flex");
+    }
   }
 });

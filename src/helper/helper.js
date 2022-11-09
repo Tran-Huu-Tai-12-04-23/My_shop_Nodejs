@@ -21,6 +21,10 @@ helper = {
       <i class="fa-solid fa-plus"></i>
         <li>Create new product</li>
       </a>
+      <a href="/user/product/bought">
+      <i class="fa-solid fa-cash-register"></i>
+      <li href="">Ordered</li>
+      </a>
       <a href="/user/profile">
         <i class="bx bx-user"></i>
         <li href="">Profile</li>

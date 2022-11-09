@@ -60,4 +60,12 @@ router.put("/user/product/restore/:id", UserControllers.restore);
 router.delete("/user/product/destroy/:id", UserControllers.destroy);
 //[get] user/product/detail/:id
 router.get("/user/product/detail/:id", UserControllers.productDetail);
+//get user/product/bought/
+router.get("/user/product/bought",userMiddleware.userLogin, UserControllers.getProductUserBought);
+//[put] user/product/order/:id
+router.put(
+  "/user/product/order/:id",
+  userMiddleware.userLogin,
+  UserControllers.userOrderProduct
+);
 module.exports = router;

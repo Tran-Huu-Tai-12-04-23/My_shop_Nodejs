@@ -79,7 +79,9 @@
   <i class='bx bx-send' ></i>
   </div>
 </div>
-
+<form method="post" class="form__buy__product">
+  <input type="text" name="amount" class="hidden input__form__buy__product" value="">
+</form>
 <form method="POST" class="form__add__cart"></form>
 <script>
     const iconNext = $('.icon__n');
@@ -109,5 +111,17 @@
     iconPrev.click( function() {
       const newcountProduct = handleCountProduct(0);
       $(this).parent().children('.count__product').text( newcountProduct)
+    });
+
+    const formBuyProduct = $('.form__buy__product');
+    const iconBuyProduct = $('.button__detail__buy');
+
+    iconBuyProduct.click( function() {
+      var amountProductBuy = $('.count__product').text();
+      var idProduct = $(this).data('id');
+
+      $('.input__form__buy__product').val(amountProductBuy);
+      formBuyProduct.attr('action', `/user/product/order/${idProduct}?_method=PUT`);
+      formBuyProduct.submit();
     });
 </script>
