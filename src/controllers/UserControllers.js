@@ -4,6 +4,7 @@ const utilsConvertoObject = require("../util/covertoObject");
 const ImagesStore = require("../model/ImagesStore");
 const fs = require("fs");
 const UserOrdered = require("../model/UserOrdered");
+const cartStoreDB = require("../model/cartStore");
 
 const userActive = {
   username: undefined,
@@ -19,18 +20,33 @@ const UserControllers = {
     if (req.query.search != undefined) {
       search = req.query.search;
     }
-    productsDB.find(
-      {
-        delete: false,
-        $or: [{ description: { $regex: search, $options: "i" } }],
-      },
-      (err, products) => {
-        if (err) return res.send(err);
+    const countCart = cartStoreDB.countDocuments({
+      userAddID: userActive.id,
+    });
+    const listProduct = productsDB.find({
+      delete: false,
+      $or: [{ description: { $regex: search, $options: "i" } }],
+    });
+    // productsDB.find(
+    //   {
+    //     delete: false,
+    //     $or: [{ description: { $regex: search, $options: "i" } }],
+    //   },
+    //   (err, products) => {
+    //     if (err) return res.send(err);
+    //     return res.render("home", {
+    //       products: utilsConvertoObject.mutilyToObject(products),
+    //     });
+    //   }
+    // );
+    Promise.all([countCart, listProduct])
+      .then(([countCart, listProduct]) => {
         return res.render("home", {
-          products: utilsConvertoObject.mutilyToObject(products),
+          countCart,
+          products: utilsConvertoObject.mutilyToObject(listProduct),
         });
-      }
-    );
+      })
+      .catch((err) => res.send(err));
   },
   // login and register
   login(req, res) {
@@ -331,7 +347,31 @@ const UserControllers = {
       productID: req.params.id,
     });
     newOrdered.save();
+
     return res.redirect("/user/product/bought");
+  },
+  //[post] user/product/orderMutil
+  userOrderMutilProduct(req, res) {
+    if (req.body === undefined) {
+      return res.send("err");
+    }
+    req.body.productID.forEach((item, index) => {
+      const newOrdered = new UserOrdered({
+        userOrdered: userActive.id,
+        amount: req.body.amount[index],
+        productID: item,
+      });
+      newOrdered.save();
+    });
+    cartStoreDB
+      .deleteMany({
+        userAddID: userActive.id,
+        productID: { $in: req.body.productID },
+      })
+      .then((data) => {
+        console.log(data);
+        return res.redirect("/user/product/bought");
+      });
   },
 };
 

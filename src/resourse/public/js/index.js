@@ -3,6 +3,7 @@ $(window).ready(function () {
   const menuUser = $(".menu__user");
   const iconActive = $(".icon__active");
   const iconClose = $(".icon__close");
+  const avatar = $(".avatar__img");
 
   inputSearch.focus(function () {
     $(".icon__search").css("display", "none");
@@ -16,16 +17,21 @@ $(window).ready(function () {
     }
   });
 
-  var isOpenMenu = false;
+  avatar.click(function (e) {
+    e.stopPropagation();
+    if (menuUser.hasClass("show")) {
+      handleMenu(false);
+    } else {
+      handleMenu(true);
+    }
+  });
   iconActive.click(function (e) {
     e.stopPropagation();
-    isOpenMenu = !isOpenMenu;
-    handleMenu(isOpenMenu);
+    handleMenu(true);
   });
   iconClose.click(function (e) {
     e.stopPropagation();
-    menuUser.removeClass("show");
-    isOpenMenu = !isOpenMenu;
+    handleMenu(false);
   });
   function handleMenu(isOpenMenu) {
     if (isOpenMenu == true) {
@@ -36,8 +42,7 @@ $(window).ready(function () {
   }
 
   $(window).click(function () {
-    isOpenMenu = !isOpenMenu;
-    menuUser.removeClass("show");
+    handleMenu(false);
   });
 
   const iconPrev = $(".icon__pre");

@@ -131,6 +131,7 @@ body {
   justify-content: space-between;
   padding-left: 12px;
   border-left: 1px solid var(--background__btn);
+  cursor: pointer;
 }
 .avatar i {
   position: relative;
@@ -845,7 +846,7 @@ i.bx.bx-x.icon__close:hover {
   position: absolute;
   top: 10%;
   right: 4%;
-  width: 400px;
+  width: 20%;
   height: 540px;
   /* overflow-y: scroll; */
   border-radius: 24px;
@@ -979,7 +980,7 @@ i.bx.bx-x.icon__close:hover {
   justify-content: space-between;
   margin-bottom: 24px;
 }
-.info__ordered> span {
+.info__ordered > span {
   width: 150px;
   line-height: 24px;
 }
@@ -1037,4 +1038,18 @@ i.bx.bx-x.icon__close:hover {
     pacity: 1;
     width: 80%;
   }
+}
+.wrapp__cart {
+  position: relative;
+}
+.amount__cart__user {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  background-color: var(--coins__color);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
 }

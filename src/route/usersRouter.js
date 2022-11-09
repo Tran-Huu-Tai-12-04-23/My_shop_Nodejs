@@ -61,11 +61,21 @@ router.delete("/user/product/destroy/:id", UserControllers.destroy);
 //[get] user/product/detail/:id
 router.get("/user/product/detail/:id", UserControllers.productDetail);
 //get user/product/bought/
-router.get("/user/product/bought",userMiddleware.userLogin, UserControllers.getProductUserBought);
+router.get(
+  "/user/product/bought",
+  userMiddleware.userLogin,
+  UserControllers.getProductUserBought
+);
 //[put] user/product/order/:id
 router.put(
   "/user/product/order/:id",
   userMiddleware.userLogin,
   UserControllers.userOrderProduct
+);
+//[post] user/product/orderMutil
+router.post(
+  "/user/product/orderMutil",
+  userMiddleware.userLogin,
+  UserControllers.userOrderMutilProduct
 );
 module.exports = router;

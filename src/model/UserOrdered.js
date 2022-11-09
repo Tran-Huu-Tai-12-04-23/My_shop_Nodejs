@@ -4,13 +4,12 @@ const Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 const UserOrdered = new Schema(
   {
-    userOrdered: { type: String, required: true },
+    userOrdered: { type: String },
     productID: {
       type: ObjectId,
-      required: true,
       ref: "products",
     },
-    amount: { type: Number, required: true },
+    amount: { type: Number },
   },
   {
     timestamps: true,

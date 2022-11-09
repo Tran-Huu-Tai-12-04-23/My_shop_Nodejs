@@ -89,5 +89,11 @@ helper = {
     }
     return "";
   },
+  showAmountCart: (amount) => {
+    if (amount > 0) {
+      return `<span class="amount__cart__user">${amount}</span>`;
+    }
+    return "";
+  },
 };
 module.exports = helper;

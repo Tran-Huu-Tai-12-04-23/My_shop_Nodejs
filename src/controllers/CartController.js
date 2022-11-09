@@ -49,7 +49,7 @@ const CartController = {
           const newProductAdded = new cartStoreDB(newCart);
           newProductAdded.save();
           console.log("add new complete");
-          return res.redirect("/user/cart/store");
+          return res.redirect("/");
         } else {
           const newcart = {
             productID: req.params.id,
