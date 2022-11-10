@@ -7,22 +7,20 @@
       {{#if item}}
         {{#each item}}
           <div class="info__ordered">
-            <img
-              src="{{this.productID.link_image}}"
-              alt=""
-            />
+            <img src="{{this.productID.link_image}}" alt="" />
             <span class="name__ordered">
               {{this.productID.nameproduct}}
             </span>
             <span>
-              Amout : {{this.amount}}
+              Amout :
+              {{this.amount}}
             </span>
             <span>Cost : {{this.productID.cost}}</span>
             <div class="modi__ordered">
               <i class="fa-solid fa-truck-fast"></i>
               <span>Thanks for you to ordered!!!</span>
             </div>
-            <div class="button__cancel_order">
+            <div class="button__cancel_order" data-id="{{this.productID._id}}">
               Cancle ordered
               <i class="fa-regular fa-circle-xmark icon__cancle"></i>
             </div>
@@ -34,3 +32,19 @@
     </div>
   </div>
 </div>
+<form method="POST" class="form__cancle__ordered">
+
+</form>
+
+<script>
+  const buttonCancle = $(".button__cancel_order");
+  const formCancle = $(".form__cancle__ordered");
+
+  buttonCancle.click( function () {
+    const idProduct = $(this).data('id');
+    formCancle.attr('action', 
+      `/user/product/order/delete/${idProduct}?_method=DELETE`
+    );
+    formCancle.submit();
+  })
+</script>

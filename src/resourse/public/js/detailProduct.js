@@ -23,9 +23,10 @@ $(window).ready(function () {
     formAction.submit();
   });
   btnAddCart.click(function (e) {
+    var amount = $('.count__product').text();
     e.preventDefault();
     var idProduct = $(this).data("id");
-    formAddCart.attr("action", `/user/cart/store/${idProduct}?_method=PUT`);
+    formAddCart.attr("action", `/user/cart/store/${idProduct}/${amount}?_method=PUT`);
     formAddCart.submit();
   });
 

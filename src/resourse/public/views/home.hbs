@@ -112,18 +112,6 @@
 
     <div class="content__product">
       {{#each products}}
-        {{!-- <a style="color: #000;" href="/user/product/detail/{{this._id}}">
-        <div class="sub__item">
-          <img src="{{this.link_image}}" alt="" />
-          <span class="title__cart">
-            {{this.description}}
-          </span>
-          <div class="footer__cart">
-            <span class="cost__cart">đ{{this.cost}}</span>
-            <button class="add__cart" data-id="{{this._id}}">Add cart</button>
-          </div>
-        </div>
-      </a> --}}
         <a href="/user/product/detail/{{this._id}}" class="content__item">
           <img src="{{this.link_image}}" alt="" />
           <div class="content__item__info">
@@ -149,10 +137,14 @@
 {{! linh detail product }}
 <script>
 
-  const btnAddCart = $('.add__cart'); const formAddProduct
-  =$('.form__add__product'); console.log(formAddProduct);
-  btnAddCart.click(function(e) { e.preventDefault(); const idCartAdd =
-  $(this).data('id'); formAddProduct.attr("action",
-  `/user/cart/store/${idCartAdd}?_method=PUT`); formAddProduct.submit(); })
+  const btnAddCart = $('.add__cart'); 
+  const formAddProduct = $('.form__add__product'); 
+
+  btnAddCart.click(function(e) { 
+    e.preventDefault(); 
+    const idCartAdd = $(this).data('id'); 
+    formAddProduct.attr("action",
+        `/user/cart/store/${idCartAdd}?_method=PUT`); formAddProduct.submit(); 
+  });
 
 </script>

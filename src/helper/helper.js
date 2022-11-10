@@ -1,17 +1,16 @@
-const { userActive } = require("../controllers/UserControllers");
 const products = require("../model/products");
-const cartStoreDB = require("../model/cartStore");
-const { countDocuments } = require("../model/users");
+const { userActive } = require("../controllers/UserControllers");
+
 helper = {
   showuser: () => {
-    if (userActive.username != undefined) {
-      return `<span class="name__user">hi, ${userActive.username}</span>`;
+    if (userActive.name != undefined) {
+      return `<span class="name__user">hi, ${userActive.name}</span>`;
     } else {
       return `<span class="name__user">Khách</span>`;
     }
   },
   showOptionsUser: () => {
-    if (userActive.username != undefined) {
+    if (userActive.name != undefined) {
       return `
         <a href='/user/product/store'>
         <i class='bx bx-cart-download'></i>
@@ -35,7 +34,7 @@ helper = {
     }
   },
   showLogOut: () => {
-    if (userActive.username != undefined) {
+    if (userActive.name != undefined) {
       return `<a href="/logout">
       <i class="bx bx-log-out"></i>
       <li href="">Log Out</li>
@@ -45,7 +44,7 @@ helper = {
     }
   },
   showLoginRegister: () => {
-    if (userActive.username != undefined) {
+    if (userActive.name != undefined) {
       return ``;
     } else {
       return `<a href="/login">
@@ -62,7 +61,7 @@ helper = {
     return "";
   },
   showChangePass: () => {
-    if (userActive.username != undefined && userActive.id != undefined) {
+    if (userActive.name != undefined && userActive.id != undefined) {
       return `<a href='/user/account/edit/${userActive.id}'>
         <i class='bx bx-user'></i>
         <li>Change Password</li>
@@ -72,8 +71,8 @@ helper = {
     }
   },
   showAvatar: () => {
-    if (userActive.id != undefined && userActive.username != undefined) {
-      return `<img src="/uploads/${userActive.username}_avatar.jpg" alt="" class="avatar__img" />`;
+    if (userActive.id != undefined && userActive.name != undefined) {
+      return `<img src="/uploads/${userActive.name}_avatar.jpg" alt="" class="avatar__img" />`;
     }
     return `<img src="/uploads/default.jpg" alt="" class="avatar__img" />`;
   },

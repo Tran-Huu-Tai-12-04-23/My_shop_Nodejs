@@ -5,6 +5,8 @@ const userMiddleware = require("../middelware/userMiddleware");
 const upload = require("../controllers/UploadsControllers");
 //[delete] account /user/account/delete/:id
 router.delete("/user/account/delete/:id", UserControllers.deleteAccount);
+
+
 //get /user/account/edit/:id
 router.get(
   "/user/account/edit/:id",
@@ -34,5 +36,6 @@ router.post("/login/checklogin", UserControllers.loginCheck);
 
 // [get] home
 router.get("/", UserControllers.getHome);
+  //get home
 
 module.exports = router;

@@ -6,8 +6,21 @@ const methodOverride = require("method-override");
 const helper = require("./helper/helper");
 const path = require("path");
 const ImagesStore = require("./model/ImagesStore");
+const cookieParser = require("cookie-parser"); //user for secret
+const sessions = require("express-session");
 
 app = express();
+app.use(cookieParser());
+//use session
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(
+  sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false,
+  })
+);
 // use static file
 app.use(express.static(path.join(__dirname, "resourse/public")));
 app.engine(
@@ -53,4 +66,12 @@ app.get("/photo", (req, res) => {
     .catch((err) => {
       return res.send(err);
     });
+});
+
+app.get("/checkSessions", (req, res) => {
+  if (req.session.username != undefined) {
+    return res.send(req.session);
+  } else {
+    return res.send("err");
+  }
 });

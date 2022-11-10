@@ -6,39 +6,25 @@ const fs = require("fs");
 const UserOrdered = require("../model/UserOrdered");
 const cartStoreDB = require("../model/cartStore");
 
-const userActive = {
-  username: undefined,
-  id: undefined,
+var userActive = {
+  name: undefined,
   admin: false,
+  id: undefined,
 };
-var countCartStore = 0;
 
 const UserControllers = {
-  //get home
   getHome(req, res) {
     let search = "";
     if (req.query.search != undefined) {
       search = req.query.search;
     }
     const countCart = cartStoreDB.countDocuments({
-      userAddID: userActive.id,
+      userAddID: req.session.idUser,
     });
     const listProduct = productsDB.find({
       delete: false,
       $or: [{ description: { $regex: search, $options: "i" } }],
     });
-    // productsDB.find(
-    //   {
-    //     delete: false,
-    //     $or: [{ description: { $regex: search, $options: "i" } }],
-    //   },
-    //   (err, products) => {
-    //     if (err) return res.send(err);
-    //     return res.render("home", {
-    //       products: utilsConvertoObject.mutilyToObject(products),
-    //     });
-    //   }
-    // );
     Promise.all([countCart, listProduct])
       .then(([countCart, listProduct]) => {
         return res.render("home", {
@@ -48,20 +34,18 @@ const UserControllers = {
       })
       .catch((err) => res.send(err));
   },
+
   // login and register
   login(req, res) {
     res.render("user/login");
   },
   //logour
   logout(req, res) {
-    userActive.username = undefined;
-    userActive.id = undefined;
-    userActive.admin = false;
-
-    return res.redirect("/");
+    req.session.destroy();
+    res.redirect("/");
   },
   // /login/checklogin
-  loginCheck(req, res) {
+  loginCheck(req, res, next) {
     userDB.findOne({ username: req.body.username }, (err, user) => {
       if (!user) {
         return res.send("login failed, account not found");
@@ -70,9 +54,15 @@ const UserControllers = {
         return res.send("login failed: " + err.message);
       }
       if (user.password === req.body.password) {
-        userActive.username = user.username;
+        req.session.username = user.username;
+        req.session.idUser = user.id;
+        req.session.admin = user.admin;
+        userActive.name = user.username;
         userActive.id = user.id;
         userActive.admin = user.admin;
+
+        console.log("Login successful");
+
         return res.redirect("/");
       } else {
         console.log("Password incorrect!!");
@@ -209,7 +199,7 @@ const UserControllers = {
         return res.send("PRODUCT HAS CREATED");
       } else {
         const newData = {
-          authorID: userActive.id,
+          authorID: req.session.idUserUser,
           nameproduct: req.body.name,
           description: req.body.description,
           cost: req.body.cost,
@@ -225,12 +215,13 @@ const UserControllers = {
 
   //[get] user/product/store
   getAllMyProducts(req, res) {
+    req.session = req.req.session;
     const count = productsDB.countDocuments({
-      authorID: userActive.id,
+      authorID: req.session.idUserUser,
       delete: true,
     });
     const products = productsDB.find({
-      authorID: userActive.id,
+      authorID: req.session.idUserUser,
       delete: false,
     });
     Promise.all([products, count])
@@ -257,7 +248,7 @@ const UserControllers = {
 
   //[put] put user/product/edit/:id
   updateProduct(req, res) {
-    const dataProducts = { authorID: userActive.id, ...req.body };
+    const dataProducts = { authorID: req.session.idUser, ...req.body };
     productsDB.findByIdAndUpdate(req.params.id, dataProducts, (err, docs) => {
       if (err) return res.send(err);
       console.log("Update product compelete ");
@@ -306,7 +297,7 @@ const UserControllers = {
   listProductDeleted(req, res) {
     productsDB.find(
       {
-        authorID: userActive.id,
+        authorID: req.session.idUser,
         delete: true,
       },
       (err, products) => {
@@ -329,7 +320,7 @@ const UserControllers = {
   // [get] user/product/bought
   getProductUserBought(req, res) {
     const listItemOrdered = UserOrdered.find({
-      userOrdered: userActive.id,
+      userOrdered: req.session.idUser,
     })
       .populate("productID")
       .then((item) => {
@@ -342,7 +333,7 @@ const UserControllers = {
   //[put] user/product/order/:id
   userOrderProduct(req, res) {
     const newOrdered = new UserOrdered({
-      userOrdered: userActive.id,
+      userOrdered: req.session.idUser,
       amount: req.body.amount,
       productID: req.params.id,
     });
@@ -352,20 +343,31 @@ const UserControllers = {
   },
   //[post] user/product/orderMutil
   userOrderMutilProduct(req, res) {
-    if (req.body === undefined) {
-      return res.send("err");
+    if (req.body === undefined || req.body.productID === undefined) {
+      return res.send(
+        "You have no product in cartStore!! please add item in cart.."
+      );
     }
-    req.body.productID.forEach((item, index) => {
+    if (req.body.productID.length == 1) {
+      req.body.productID.forEach((item, index) => {
+        const newOrdered = new UserOrdered({
+          userOrdered: req.session.idUser,
+          amount: req.body.amount[index],
+          productID: item,
+        });
+        newOrdered.save();
+      });
+    } else if (req.body.productID.length > 1) {
       const newOrdered = new UserOrdered({
-        userOrdered: userActive.id,
-        amount: req.body.amount[index],
-        productID: item,
+        userOrdered: req.session.idUser,
+        amount: req.body.amount,
+        productID: req.body.productID,
       });
       newOrdered.save();
-    });
+    }
     cartStoreDB
       .deleteMany({
-        userAddID: userActive.id,
+        userAddID: req.session.idUser,
         productID: { $in: req.body.productID },
       })
       .then((data) => {
@@ -373,6 +375,17 @@ const UserControllers = {
         return res.redirect("/user/product/bought");
       });
   },
+  //[delete] user/product/order/delete/:id : cancle ordered
+  cancleOrdered(req, res) {
+    UserOrdered.deleteOne({
+      userOrdered: req.session.idUser,
+      productID: req.params.id,
+    })
+      .then((data) => {
+        return res.redirect("/user/product/bought");
+      })
+      .catch((err) => res.send(err));
+  },
 };
 
-module.exports = { UserControllers, userActive, countCartStore };
+module.exports = { UserControllers, userActive };

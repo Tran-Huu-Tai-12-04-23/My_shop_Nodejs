@@ -7,7 +7,6 @@ const userMiddleware = require("../middelware/userMiddleware");
 //[get] user profile
 router.get(
   "/user/profile",
-  userMiddleware.userLogin,
   UserControllers.showProfile
 );
 //[get] all users/ accounts
@@ -19,37 +18,31 @@ router.get(
 // [post ] create new item of user :id
 router.get(
   "/user/product/getProductEdit/:id",
-  userMiddleware.userLogin,
   UserControllers.getProductEdit
 );
 //[put] edit product item of user :id
 router.put(
   "/user/product/edit/:id",
-  userMiddleware.userLogin,
   UserControllers.updateProduct
 );
 //[put] soft delete item of user :id
 router.put(
   "/user/product/softDelete/:id",
-  userMiddleware.userLogin,
   UserControllers.softDelete
 );
 //[get] list product deleted
 router.get(
   "/user/product/listProductDeleted",
-  userMiddleware.userLogin,
   UserControllers.listProductDeleted
 );
 //[get] view create new item of user :idz
 router.get(
   "/user/create_new_item",
-  userMiddleware.userLogin,
   UserControllers.createNewItem
 );
 //[get] all products
 router.get(
   "/user/product/store",
-  userMiddleware.userLogin,
   UserControllers.getAllMyProducts
 );
 //[post] crete new product
@@ -63,19 +56,18 @@ router.get("/user/product/detail/:id", UserControllers.productDetail);
 //get user/product/bought/
 router.get(
   "/user/product/bought",
-  userMiddleware.userLogin,
   UserControllers.getProductUserBought
 );
 //[put] user/product/order/:id
 router.put(
   "/user/product/order/:id",
-  userMiddleware.userLogin,
   UserControllers.userOrderProduct
 );
 //[post] user/product/orderMutil
 router.post(
   "/user/product/orderMutil",
-  userMiddleware.userLogin,
   UserControllers.userOrderMutilProduct
 );
+//[delete] user/product/order/delete/:id
+router.delete("/user/product/order/delete/:id", UserControllers.cancleOrdered);
 module.exports = router;
