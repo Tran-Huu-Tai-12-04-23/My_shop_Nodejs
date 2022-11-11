@@ -201,7 +201,7 @@ const UserControllers = {
         return res.send("PRODUCT HAS CREATED");
       } else {
         const newData = {
-          authorID: req.session.idUserUser,
+          authorID: req.session.idUser,
           nameproduct: req.body.name,
           description: req.body.description,
           cost: req.body.cost,
@@ -219,11 +219,11 @@ const UserControllers = {
   getAllMyProducts(req, res) {
     req.session = req.req.session;
     const count = productsDB.countDocuments({
-      authorID: req.session.idUserUser,
+      authorID: req.session.idUser,
       delete: true,
     });
     const products = productsDB.find({
-      authorID: req.session.idUserUser,
+      authorID: req.session.idUser,
       delete: false,
     });
     Promise.all([products, count])
