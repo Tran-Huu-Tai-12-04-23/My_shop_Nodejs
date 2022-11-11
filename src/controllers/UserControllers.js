@@ -41,8 +41,11 @@ const UserControllers = {
   },
   //logour
   logout(req, res) {
+    userActive.name = undefined;
+    userActive.admin = false;
+    userActive.id = undefined;
     req.session.destroy();
-    res.redirect("/");
+    return res.redirect("/");
   },
   // /login/checklogin
   loginCheck(req, res, next) {
@@ -62,7 +65,6 @@ const UserControllers = {
         userActive.admin = user.admin;
 
         console.log("Login successful");
-
         return res.redirect("/");
       } else {
         console.log("Password incorrect!!");

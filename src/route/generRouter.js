@@ -3,9 +3,10 @@ const userDB = require("../model/users");
 const { UserControllers } = require("../controllers/UserControllers");
 const userMiddleware = require("../middelware/userMiddleware");
 const upload = require("../controllers/UploadsControllers");
+const Authentications = require("../middelware/Authentications");
+
 //[delete] account /user/account/delete/:id
 router.delete("/user/account/delete/:id", UserControllers.deleteAccount);
-
 
 //get /user/account/edit/:id
 router.get(
@@ -32,10 +33,10 @@ router.post(
 //[get] from loggin
 router.get("/login", UserControllers.login);
 // [post] checklogin
-router.post("/login/checklogin", UserControllers.loginCheck);
-
-// [get] home
-router.get("/", UserControllers.getHome);
-  //get home
+router.post(
+  "/login/checklogin",
+  Authentications.verifyToken,
+  UserControllers.loginCheck
+);
 
 module.exports = router;

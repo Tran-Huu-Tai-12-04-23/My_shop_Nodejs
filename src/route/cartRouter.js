@@ -6,7 +6,8 @@ const userMiddleware = require("../middelware/userMiddleware");
 
 router.get("/cart/store", CartController.getAllCartStore);
 router.delete("/cart/store/delete/:id", CartController.deleteItem);
-router.put("/cart/store/:id/:amount", CartController.putProductInCart);
+router.put("/cart/store/:id", CartController.putProductInCart);
+router.put("/cart/store/:id/:amount", CartController.putMutilyProductInCart);
 router.delete("/cart/store/destroy/:id", CartController.destroyItem);
 
 module.exports = router;

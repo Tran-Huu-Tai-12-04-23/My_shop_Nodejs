@@ -10,7 +10,10 @@ const CartController = {
       if (err) return res.send(err);
       const dataCartAdded = carts.map((item) => item.productID);
       const listItems = cartStoreDB
-        .find({ productID: { $in: dataCartAdded }, userAddID: req.session.idUser })
+        .find({
+          productID: { $in: dataCartAdded },
+          userAddID: req.session.idUser,
+        })
         .populate("productID"); //get productIDs have id in cartStoreDB
       const countCart = cartStoreDB.countDocuments({
         userAddID: req.session.idUser,
@@ -33,8 +36,8 @@ const CartController = {
         });
     });
   },
-  //[put] cart store
-  putProductInCart(req, res) {
+  //[put] /cart/store/:id/:amount mutily item to ordered
+  putMutilyProductInCart(req, res) {
     cartStoreDB.findOne(
       { productID: req.params.id, userAddID: req.session.idUser },
       (err, cart) => {
@@ -67,6 +70,31 @@ const CartController = {
       }
     );
 
+    // return res.redirect("/");
+  },
+  //[put] /cart/store/:idsingle item to ordered
+  putProductInCart(req, res) {
+    cartStoreDB
+      .findOne({ productID: req.params.id, userAddID: req.session.idUser })
+      .then((item) => {
+        if (item) {
+          const newCart = {
+            productID: req.params.id,
+            userAddID: req.session.idUser,
+            amount: item.amount + 1,
+          };
+          cartStoreDB
+            .updateOne(
+              { productID: req.params.id, userAddID: req.session.idUser },
+              newCart
+            )
+            .then((data) => {
+              return res.redirect("/user/cart/store");
+            })
+            .catch((err) => res.send(err));
+        }
+      })
+      .catch((err) => res.send(err));
     // return res.redirect("/");
   },
 

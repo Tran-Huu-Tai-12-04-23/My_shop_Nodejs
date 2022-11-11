@@ -2,10 +2,8 @@ const userDB = require("../model/users");
 
 const userMiddleware = {
   userLogin: function (req, res, next) {
-    console.log("check " + req.session.idUser);
     if (req.session.idUser != undefined) {
       console.log("you login successfully!!!");
-      console.log(req.session);
       return next();
     } else {
       console.log("user isn't already logged in");

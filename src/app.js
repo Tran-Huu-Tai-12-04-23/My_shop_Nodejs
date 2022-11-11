@@ -8,6 +8,8 @@ const path = require("path");
 const ImagesStore = require("./model/ImagesStore");
 const cookieParser = require("cookie-parser"); //user for secret
 const sessions = require("express-session");
+//using dotenv
+require("dotenv").config();
 
 app = express();
 app.use(cookieParser());
@@ -32,7 +34,7 @@ app.engine(
 );
 // use middleware
 // app.use(userMiddleware.userLogin);
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 //// override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
 // get bodt from clinet request
@@ -51,27 +53,6 @@ mainRouter(app);
 
 // connect to mongoose db
 connectMgdb();
-
 app.listen(port, () => {
   console.log(`app listening on http://localhost:${port}`);
-});
-
-app.get("/photo", (req, res) => {
-  ImagesStore.findOne({})
-    .then((result) => {
-      return res.render("img", {
-        result: result.toObject(),
-      });
-    })
-    .catch((err) => {
-      return res.send(err);
-    });
-});
-
-app.get("/checkSessions", (req, res) => {
-  if (req.session.username != undefined) {
-    return res.send(req.session);
-  } else {
-    return res.send("err");
-  }
 });
