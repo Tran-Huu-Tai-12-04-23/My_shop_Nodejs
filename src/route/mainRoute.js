@@ -6,13 +6,19 @@ const Authentications = require("../middelware/Authentications");
 
 function mainRouter(app) {
   app.use("/", generRouter);
-  app.use("/", userMiddleware.userLogin, usersRouter);
+  app.use(
+    "/",
+    userMiddleware.userLogin,
+    Authentications.authenticationToken,
+    usersRouter
+  );
   app.use(
     "/user/",
-    Authentications.authenticationToken,
     userMiddleware.userLogin,
+    Authentications.authenticationToken,
     cartRouter
   );
+  app.use("/refeshtoken", Authentications.refeshToken);
 }
 
 module.exports = mainRouter;

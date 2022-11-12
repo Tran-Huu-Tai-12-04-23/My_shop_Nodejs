@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const createToken = {
   createRefeshtoken(data) {
-    return jwt.sign(data, `${process.env.RESFESH_TOKEN}`, {
+    return jwt.sign(data, `${process.env.REFESH_TOKEN}`, {
       expiresIn: "365d",
     });
   },

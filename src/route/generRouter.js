@@ -5,15 +5,6 @@ const userMiddleware = require("../middelware/userMiddleware");
 const upload = require("../controllers/UploadsControllers");
 const Authentications = require("../middelware/Authentications");
 
-//[delete] account /user/account/delete/:id
-router.delete("/user/account/delete/:id", UserControllers.deleteAccount);
-
-//get /user/account/edit/:id
-router.get(
-  "/user/account/edit/:id",
-  userMiddleware.userLogin,
-  UserControllers.editAccount
-);
 //put /user/account/edit/:id
 router.put(
   "/user/account/change_pass/:id",
@@ -38,5 +29,8 @@ router.post(
   Authentications.verifyToken,
   UserControllers.loginCheck
 );
+
+// [get] home
+router.get("/", UserControllers.getHome);
 
 module.exports = router;

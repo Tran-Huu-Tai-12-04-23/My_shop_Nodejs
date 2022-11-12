@@ -4,9 +4,10 @@ const userDB = require("../model/users");
 const { UserControllers } = require("../controllers/UserControllers");
 const userMiddleware = require("../middelware/userMiddleware");
 
-// [get] home
-router.get("/", UserControllers.getHome);
-
+//get /user/account/edit/:id
+router.get("/user/account/edit/:id", UserControllers.editAccount);
+//[delete] account /user/account/delete/:id
+router.delete("/user/account/delete/:id", UserControllers.deleteAccount);
 //[get] user profile
 router.get("/user/profile", UserControllers.showProfile);
 //[get] all users/ accounts

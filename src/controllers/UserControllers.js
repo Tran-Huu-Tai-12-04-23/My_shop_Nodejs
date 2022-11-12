@@ -41,10 +41,12 @@ const UserControllers = {
   },
   //logour
   logout(req, res) {
+    // return res.send(req.session.acessToken);
     userActive.name = undefined;
     userActive.admin = false;
     userActive.id = undefined;
     req.session.destroy();
+    res.clearCookie("refeshToken");
     return res.redirect("/");
   },
   // /login/checklogin

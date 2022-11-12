@@ -35,15 +35,17 @@ const authenticationMiddleware = {
   authenticationToken(req, res, next) {
     const authHeader = req.session.acessToken;
     var token;
-    if (authHeader.includes("Beare ")) {
-      token = authHeader.split(" ")[1];
-    } else {
-      token = authHeader;
+    if (authHeader) {
+      if (authHeader.includes("Beare ")) {
+        token = authHeader.split(" ")[1];
+      } else {
+        token = authHeader;
+      }
     }
     if (token == null) return res.status(401).send("Error");
     jwt.verify(token, `${process.env.ACESS_TOKEN}`, (err, user) => {
       if (err) {
-        return res.send(err);
+        authenticationMiddleware.refeshToken;
       }
       next();
     });
@@ -53,6 +55,7 @@ const authenticationMiddleware = {
     if (!refeshToken) return res.send("you're not authentication");
     if (!refeshTokens.includes(refeshToken))
       return res.send("you're not authenticated");
+
     jwt.verify(refeshToken, `${process.env.REFESH_TOKEN}`, (err, user) => {
       if (err) return res.send(err);
       refeshTokens = refeshTokens.filter((token) => token != refeshToken);
