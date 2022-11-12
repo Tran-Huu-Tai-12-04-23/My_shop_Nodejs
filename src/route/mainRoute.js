@@ -3,9 +3,11 @@ const generRouter = require("./generRouter");
 const cartRouter = require("./cartRouter");
 const userMiddleware = require("../middelware/userMiddleware");
 const Authentications = require("../middelware/Authentications");
+const ShopRouter = require("../route/ShopRouter");
 
 function mainRouter(app) {
   app.use("/", generRouter);
+  app.use("/shop", ShopRouter);
   app.use(
     "/",
     userMiddleware.userLogin,

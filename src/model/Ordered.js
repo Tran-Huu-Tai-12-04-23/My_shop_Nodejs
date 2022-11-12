@@ -9,6 +9,7 @@ const Ordered = new Schema(
     amount: {
       type: "number",
     },
+    status: { type: "string", required: true },
   },
   {
     timestamps: true,

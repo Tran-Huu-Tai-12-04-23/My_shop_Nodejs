@@ -1053,3 +1053,88 @@ i.bx.bx-x.icon__close:hover {
   width: 14px;
   height: 14px;
 }
+.thumbnail___item {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+}
+.title__item__ordered {
+  position: relative;
+}
+
+.title__item__ordered:hover {
+  color: var(--coins__color);
+  cursor: pointer;
+}
+.title__item__ordered::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  width: 180px;
+  left: 0;
+  height: 2px;
+  background-color: var(--primary_color);
+  animation: fadeInTitle 0.4s linear;
+  display: none;
+}
+.title__item__ordered:hover::after {
+  display: block;
+}
+
+@keyframes fadeInTitle {
+  from {
+    opacity: 0;
+    width: 0;
+  }
+  to {
+    opacity: 1;
+    width: 180px;
+  }
+}
+
+.list__item {
+  padding: 24px;
+  background-color: #3f3f43;
+  border-radius: 12px;
+}
+
+.item__ordered {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  color: var(--coins__color);
+  border-radius: 12px;
+  padding: 12px 0;
+}
+.item__ordered:hover {
+  background-color: var(--search__color);
+}
+.item__ordered input {
+  width: 200px;
+  min-width: 100px;
+  padding: 0 12px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.button__refuse,
+.button__deliver {
+  border: none;
+  padding: 12px 24px;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.button__deliver {
+  background-color: var(--background__btn);
+}
+.button__deliver:hover {
+  background-color: var(--coins__color);
+}
+.button__refuse {
+  background-color: red;
+}
+.button__refuse:hover {
+  background-color: var(--coins__color);
+}
