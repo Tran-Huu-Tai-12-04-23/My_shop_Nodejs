@@ -353,6 +353,13 @@ const UserControllers = {
       );
     }
     if (req.body.productID.length == 1) {
+      const newOrdered = new UserOrdered({
+        userOrdered: req.session.idUser,
+        amount: req.body.amount,
+        productID: req.body.productID,
+      });
+      newOrdered.save();
+    } else if (req.body.productID.length > 1) {
       req.body.productID.forEach((item, index) => {
         const newOrdered = new UserOrdered({
           userOrdered: req.session.idUser,
@@ -361,13 +368,6 @@ const UserControllers = {
         });
         newOrdered.save();
       });
-    } else if (req.body.productID.length > 1) {
-      const newOrdered = new UserOrdered({
-        userOrdered: req.session.idUser,
-        amount: req.body.amount,
-        productID: req.body.productID,
-      });
-      newOrdered.save();
     }
     cartStoreDB
       .deleteMany({
