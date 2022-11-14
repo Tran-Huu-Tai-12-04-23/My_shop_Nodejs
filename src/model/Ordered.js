@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const Ordered = new Schema(
   {
+    nameUserOrdered: { type: "string", required: true },
     authorProduct: { type: "string", required: true },
     productID: { type: "string", required: true, ref: "products" },
     amount: {

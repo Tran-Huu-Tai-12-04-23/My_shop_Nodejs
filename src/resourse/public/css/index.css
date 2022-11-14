@@ -1098,7 +1098,7 @@ i.bx.bx-x.icon__close:hover {
   border-radius: 12px;
 }
 
-.item__ordered {
+.item__recieved {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -1107,6 +1107,12 @@ i.bx.bx-x.icon__close:hover {
   color: var(--coins__color);
   border-radius: 12px;
   padding: 12px 0;
+}
+.item__recieved h5 {
+  min-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 300px;
 }
 .item__ordered:hover {
   background-color: var(--search__color);
@@ -1137,4 +1143,73 @@ i.bx.bx-x.icon__close:hover {
 }
 .button__refuse:hover {
   background-color: var(--coins__color);
+}
+.nofication__recieved {
+  position: relative;
+}
+.list__recieved {
+  position: absolute;
+  width: 400px;
+  right: -100px;
+  margin-top: 12px;
+  min-width: 300px;
+  background-color: var(--search__color);
+  padding: 24px;
+  border-radius: 24px;
+  display: none;
+  box-shadow: 5px 5px 15px 5px #000000;
+}
+.titile__order__received {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 500;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 12px;
+}
+.list__recieved .list__recieved__item {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--coins__color);
+  padding: 12px;
+  border-radius: 24px;
+}
+.list__recieved__item:hover {
+  background-color: var(--background__btn);
+}
+.list__recieved:hover,
+.bxs-bell:hover + .list__recieved {
+  display: block;
+  animation: fadeInMenu 0.5s ease-in-out;
+}
+.bxs-bell {
+  position: relative;
+}
+
+.list__recieved::after {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 69%;
+  height: 20px;
+  /* background-color: #000; */
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid var(--search__color);
+  /* display: none; */
+}
+.name__user__ordered {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  margin-top: 28px;
+  text-align: center;
+}
+.name__user__ordered span:first-child {
+  color: #ccc;
+}
+.name__user__ordered span:last-child {
+  color: var(--primary_color);
+  margin-top: 12px;
 }

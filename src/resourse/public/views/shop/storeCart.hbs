@@ -1,39 +1,29 @@
 <div class="mt_100 wrap__ordered container">
   <h1 class="title title__item__ordered">
-    Order received
+    Order Management
   </h1>
   <div class="list__item mt_24">
-    <div class="item__ordered">
-      <img
-        class="thumbnail___item"
-        src="https://cf.shopee.vn/file/bc86614dbcc46c28ddbf85b9e8ea7c2e"
-        alt=""
-      />
-      <h5 class="name__ordered">
-        Kit bàn phím Sky87 k
-      </h5>
-      <h5>Amount : 7</h5>
-      <button class="button__deliver">Prepare now!!</button>
-      <button class="button__refuse">refuse to deliver !!</button>
-    </div>
+    {{#each listItems}}
+      <div class="item__recieved">
+        <img
+          class="thumbnail___item"
+          src="{{this.productID.link_image}}"
+          alt="{{this.productID.nameproduct}}"
+        />
+        <h5 class="name__ordered">
+          {{this.productID.nameproduct}}
+        </h5>
+        <h5>Amount : {{this.amount}}</h5>
+        <button class="button__deliver">{{this.status}}!!</button>
+        <button class="button__refuse">refuse to deliver !!</button>
+      </div>
+    {{/each}}
   </div>
 </div>
 
 <script>
-    $(window).ready( function() {
-        const modal = $('#modal');
-        const buttonRefuse = $('.button__refuse');
-        const buttonCloseModal = $('.btn__close__modal');
-
-        buttonRefuse.click( function() {
-            modal.removeClass('hidden');
-        })
-
-        buttonCloseModal.click( function() {
-            modal.addClass('hidden');
-        })
-
-        
-
-    })
+  $(window).ready( function() { const modal = $('#modal'); const buttonRefuse =
+  $('.button__refuse'); const buttonCloseModal = $('.btn__close__modal');
+  buttonRefuse.click( function() { modal.removeClass('hidden'); })
+  buttonCloseModal.click( function() { modal.addClass('hidden'); }) })
 </script>
