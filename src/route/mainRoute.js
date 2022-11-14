@@ -7,7 +7,12 @@ const ShopRouter = require("../route/ShopRouter");
 
 function mainRouter(app) {
   app.use("/", generRouter);
-  app.use("/shop", ShopRouter);
+  app.use(
+    "/shop",
+    userMiddleware.userLogin,
+    Authentications.authenticationToken,
+    ShopRouter
+  );
   app.use(
     "/",
     userMiddleware.userLogin,

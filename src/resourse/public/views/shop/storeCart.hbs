@@ -14,16 +14,44 @@
           {{this.productID.nameproduct}}
         </h5>
         <h5>Amount : {{this.amount}}</h5>
-        <button class="button__deliver">{{this.status}}!!</button>
-        <button class="button__refuse">refuse to deliver !!</button>
+        <button data-id="{{this._id}}"class="button__deliver">{{this.status}}!!</button>
+        <button data-id="{{this._id}}" data-idUserOrdered="{{this.userOrdered}}"class="button__refuse">refuse to deliver !!</button>
       </div>
     {{/each}}
   </div>
 </div>
-
+<form class="form__action__ordered" method="POST"></form>
 <script>
-  $(window).ready( function() { const modal = $('#modal'); const buttonRefuse =
-  $('.button__refuse'); const buttonCloseModal = $('.btn__close__modal');
-  buttonRefuse.click( function() { modal.removeClass('hidden'); })
-  buttonCloseModal.click( function() { modal.addClass('hidden'); }) })
+  $(window).ready( function() { 
+    const modal = $('#modal'); 
+    const buttonRefuse = $('.button__refuse'); 
+    const buttonCloseModal = $('.btn__close__modal');
+    buttonRefuse.click( function() { 
+      modal.removeClass('hidden');
+      const idProduct = $(this).data('id');
+      const idUserOrdered = $(this).attr('data-idUserOrdered');
+      $('.btn__force__delete__modal').attr('data-id', idProduct);
+       $('.btn__force__delete__modal').attr('data-idUserOrdered', idUserOrdered);
+   });
+    buttonCloseModal.click( function() { 
+    modal.addClass('hidden'); 
+    }) ;
+    const buttonDeliver = $('.button__deliver');
+    const formActionOrdered = $('.form__action__ordered');
+    const buttonDestroy = $('.btn__force__delete__modal');
+    console.log(buttonDestroy);
+    buttonDeliver.click( function() { 
+      const idProduct = $(this).data('id');
+      formActionOrdered.attr('action', `/shop/product/update/status/${idProduct}?_method=PUT`);
+      formActionOrdered.submit();
+    });
+  
+    buttonDestroy.click( function() { 
+      const idProduct = $(this).data('id');
+      const idUserOrdered = $(this).attr('data-idUserOrdered');
+      formActionOrdered.attr('action', `/shop/ordered/cancle/${idProduct}/${idUserOrdered}?_method=DELETE`);
+      formActionOrdered.submit();
+    });
+  });
+
 </script>

@@ -26,10 +26,9 @@ const UserControllers = {
       delete: false,
       $or: [{ description: { $regex: search, $options: "i" } }],
     });
-
+    const shopStore = req.session.shopStore;
     Promise.all([countCart, listProduct])
       .then(([countCart, listProduct]) => {
-        const shopStore = req.session.shopStore;
         return res.render("home", {
           countCart,
           products: utilsConvertoObject.mutilyToObject(listProduct),
@@ -372,6 +371,7 @@ const UserControllers = {
         const newReceivedOrdered = new OrderedDb({
           nameUserOrdered: req.session.username,
           authorProduct: item.authorID,
+          userOrdered: req.session.idUser,
           productID: req.params.id,
           amount: req.body.amount,
           status: "Processing",

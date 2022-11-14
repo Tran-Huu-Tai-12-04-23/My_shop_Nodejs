@@ -6,6 +6,7 @@ const Ordered = new Schema(
   {
     nameUserOrdered: { type: "string", required: true },
     authorProduct: { type: "string", required: true },
+    userOrdered: { type: "string", required: true },
     productID: { type: "string", required: true, ref: "products" },
     amount: {
       type: "number",
