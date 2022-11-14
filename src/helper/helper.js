@@ -94,5 +94,8 @@ helper = {
     }
     return "";
   },
+  getLength: (item) => {
+    return Object.keys(item).length;
+  },
 };
 module.exports = helper;

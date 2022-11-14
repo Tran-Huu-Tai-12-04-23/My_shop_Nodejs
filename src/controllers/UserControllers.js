@@ -115,7 +115,6 @@ const UserControllers = {
         const newAccount = new userDB(req.body);
         console.log("create accout success", newAccount);
         newAccount.save();
-
         return res.redirect("/");
       }
     });
@@ -139,10 +138,7 @@ const UserControllers = {
         if (err) return res.send(err);
         console.log("data deleted" + data);
         console.log("check " + it);
-        const shopStore = req.session.shopStore;
-        return res.redirect("/admin/allusers", {
-          shopStore,
-        });
+        return res.redirect("/admin/allusers");
       });
     });
   },
@@ -163,6 +159,7 @@ const UserControllers = {
         return res.send(err);
       });
   },
+
   updataPass(req, res) {
     userDB
       .findOne({ _id: req.params.id })
@@ -231,10 +228,7 @@ const UserControllers = {
         const newProduct = new productsDB(newData);
         newProduct.save();
         // return res.send(req.body);
-        const shopStore = req.session.shopStore;
-        return res.redirect("/user/product/store", {
-          shopStore,
-        });
+        return res.redirect("/user/product/store");
       }
     });
   },
@@ -263,7 +257,7 @@ const UserControllers = {
       });
   },
 
-  //[get] put user/product/getProductEdit/:id
+  //[get] user/product/getProductEdit/:id
   getProductEdit(req, res) {
     productsDB.findById(req.params.id, (err, product) => {
       if (err) return res.send(err);
@@ -280,11 +274,8 @@ const UserControllers = {
     const dataProducts = { authorID: req.session.idUser, ...req.body };
     productsDB.findByIdAndUpdate(req.params.id, dataProducts, (err, docs) => {
       if (err) return res.send(err);
-      const shopStore = req.session.shopStore;
       console.log("Update product compelete ");
-      return res.redirect("/user/product/store", {
-        shopStore,
-      });
+      return res.redirect("/user/product/store");
     });
     // console.log("update complete!!!");
     // return res.redirect("/user/product/store");
@@ -297,11 +288,8 @@ const UserControllers = {
       { delete: true },
       (err, data) => {
         if (err) return res.send(err);
-        const shopStore = req.session.shopStore;
         console.log("Delete compelete !!!");
-        return res.redirect("/user/product/store", {
-          shopStore,
-        });
+        return res.redirect("/user/product/store");
       }
     );
   },
@@ -311,10 +299,7 @@ const UserControllers = {
     productsDB.deleteOne({ _id: req.params.id }, (err, data) => {
       if (err) return res.send(err);
       console.log(data);
-      const shopStore = req.session.shopStore;
-      return res.redirect("/user/product/listProductDeleted", {
-        shopStore,
-      });
+      return res.redirect("/user/product/listProductDeleted");
     });
   },
 
@@ -326,10 +311,7 @@ const UserControllers = {
       (err, data) => {
         if (err) return res.send(err);
         console.log("restore compelete!!!" + data);
-        const shopStore = req.session.shopStore;
-        return res.redirect("/user/product/listProductDeleted", {
-          shopStore,
-        });
+        return res.redirect("/user/product/listProductDeleted");
       }
     );
   },
@@ -396,10 +378,7 @@ const UserControllers = {
         });
         newOrdered.save();
         newReceivedOrdered.save();
-        const shopStore = req.session.shopStore;
-        return res.redirect("/user/product/bought", {
-          shopStore,
-        });
+        return res.redirect("/user/product/bought");
       })
       .catch((err) => res.send(err));
   },
@@ -434,8 +413,7 @@ const UserControllers = {
       })
       .then((data) => {
         console.log(data);
-        const shopStore = req.session.shopStore;
-        return res.redirect("/user/product/bought", shopStore);
+        return res.redirect("/user/product/bought");
       });
   },
   //[delete] user/product/order/delete/:id : cancle ordered
@@ -445,10 +423,7 @@ const UserControllers = {
       productID: req.params.id,
     })
       .then((data) => {
-        const shopStore = req.session.shopStore;
-        return res.redirect("/user/product/bought", {
-          shopStore,
-        });
+        return res.redirect("/user/product/bought");
       })
       .catch((err) => res.send(err));
   },

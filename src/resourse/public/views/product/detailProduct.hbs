@@ -1,5 +1,5 @@
 <div class="modal__buy__product">
-  <div class="detail__buy container">
+  <div class="detail__buy">
     <div class="deatail__buy__content">
       <div class="detail__buy__header hidden">
         <a href="/"><i class="bx bx-chevron-left"></i></a>
@@ -47,83 +47,45 @@
     </div>
   </div>
   <div class="info__shop">
-    <img src="/uploads/admin_avatar.jpg" alt="" class="avatar__shop">
+    <img src="/uploads/admin_avatar.jpg" alt="" class="avatar__shop" />
     <div class="content__shop">
       <span class="title">Mini shop</span>
       <div>
-        <i class='bx bx-chat'></i>
-         <span>Chat ngay</span>
+        <i class="bx bx-chat"></i>
+        <span>Chat ngay</span>
       </div>
       <div>
-        <i class='bx bxs-store' ></i>
+        <i class="bx bxs-store"></i>
         <span>Xem shop</span>
       </div>
     </div>
   </div>
 </div>
 
-<div class="box__comment">
-  <div class="icon__box__comment">
-    <i class='bx bx-message-rounded-minus'></i>
-  </div>
-  <div class="list__comment">
-     <img src="/uploads/admin_avatar.jpg" alt="" class="avatar__shop">
-     <div class="content__comment">
-      <span>Name</span>
-      <span>chị cách mua đi anh</span>
-     </div>
-      <i class='bx bx-heart' ></i>
-  </div>
-  <div  class="input__comment"> 
-    <input type="text">
-  <i class='bx bx-send' ></i>
-  </div>
-</div>
 <form method="post" class="form__buy__product">
-  <input type="text" name="amount" class="hidden input__form__buy__product" value="">
+  <input
+    type="text"
+    name="amount"
+    class="hidden input__form__buy__product"
+    value=""
+  />
 </form>
 <form method="POST" class="form__add__cart"></form>
 <script>
-    const iconNext = $('.icon__n');
-    const iconPrev = $('.icon__p');
-    const valueCount = $('.count__product');
-
-
-    var countProduct = Number(valueCount.text());
-    function handleCountProduct( options) {
-      if( options == 0 ) {
-        if( countProduct <= 1 ) {
-          countProduct = 1;
-          return 1;
-        }
-        countProduct = countProduct - 1;
-        return countProduct;
-      } else {
-        countProduct = countProduct + 1;
-        return countProduct ;
-      }
-    }
-    iconNext.click( function() {
-      const newcountProduct = handleCountProduct(1);
-      $(this).parent().children('.count__product').text( newcountProduct)
-    });
-
-    iconPrev.click( function() {
-      const newcountProduct = handleCountProduct(0);
-      $(this).parent().children('.count__product').text( newcountProduct)
-    });
-
-    const formBuyProduct = $('.form__buy__product');
-    const iconBuyProduct = $('.button__detail__buy');
-
-    iconBuyProduct.click( function() {
-      
-      var amountProductBuy = $('.count__product').text();
-      var idProduct = $(this).data('id');
-
-      $('.input__form__buy__product').val(amountProductBuy);
-      formBuyProduct.attr('action', `/user/product/order/${idProduct}?_method=PUT`);
-      formBuyProduct.submit();
-
-    });
+  const iconNext = $('.icon__n'); const iconPrev = $('.icon__p'); const
+  valueCount = $('.count__product'); var countProduct =
+  Number(valueCount.text()); function handleCountProduct( options) { if( options
+  == 0 ) { if( countProduct <= 1 ) { countProduct = 1; return 1; } countProduct
+  = countProduct - 1; return countProduct; } else { countProduct = countProduct
+  + 1; return countProduct ; } } iconNext.click( function() { const
+  newcountProduct = handleCountProduct(1);
+  $(this).parent().children('.count__product').text( newcountProduct) });
+  iconPrev.click( function() { const newcountProduct = handleCountProduct(0);
+  $(this).parent().children('.count__product').text( newcountProduct) }); const
+  formBuyProduct = $('.form__buy__product'); const iconBuyProduct =
+  $('.button__detail__buy'); iconBuyProduct.click( function() { var
+  amountProductBuy = $('.count__product').text(); var idProduct =
+  $(this).data('id'); $('.input__form__buy__product').val(amountProductBuy);
+  formBuyProduct.attr('action', `/user/product/order/${idProduct}?_method=PUT`);
+  formBuyProduct.submit(); });
 </script>

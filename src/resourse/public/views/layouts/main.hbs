@@ -52,25 +52,36 @@
         <div class="header__info">
           <i class="bx bxs-heart"></i>
           <a href="/shop/store/ordered" class="nofication__recieved">
-            <i class="bx bxs-bell"></i>
+            <div class="icon__nofication">
+              <i class="bx bxs-bell"></i>
+              {{#if shopStore}}
+                <span>{{getLength shopStore}}</span>
+              {{/if}}
+            </div>
             {{#if shopStore}}
               <ul class="list__recieved">
                 <h1 class="titile__order__received">Order received</h1>
-                {{#each shopStore}}
-                  <div href="/shop/store/ordered" class="list__recieved__item">
-                    <img
-                      src="{{this.productID.link_image}}"
-                      alt="{{this.productID.nameproduct}}"
-                    />
-                    <span
-                      class="list__recieved__item__name"
-                    >{{this.productID.nameproduct}}</span>
-                    <div class="name__user__ordered">
-                      {{!-- <span>{{showname}}</span> --}}
-                      <span class="list__recieved__item__time">2 ngay truoc</span>
+                <div class="wrap__list__recievied">
+                  {{#each shopStore}}
+                    <div
+                      href="/shop/store/ordered"
+                      class="list__recieved__item"
+                    >
+                      <img
+                        src="{{this.productID.link_image}}"
+                        alt="{{this.productID.nameproduct}}"
+                      />
+                      <span
+                        class="list__recieved__item__name"
+                      >{{this.productID.nameproduct}}</span>
+                      <div class="name__user__ordered">
+                        <span>Admin</span>
+                        <span class="list__recieved__item__time">2 ngay truoc</span>
+                      </div>
                     </div>
-                  </div>
-                {{/each}}
+                  {{/each}}
+
+                </div>
               </ul>
             {{/if}}
           </a>
