@@ -442,7 +442,7 @@ i.bx.bx-x.icon__close:hover {
   align-items: center;
 }
 .detail__buy {
-  width: 60%;
+  width: 80%;
   height: 50vh;
   min-width: 400px;
   min-height: 500px;
@@ -490,10 +490,14 @@ i.bx.bx-x.icon__close:hover {
   color: #ccc;
   line-height: 24px;
   margin: 50px 0;
+  height: 46;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
 }
 .detail__buy__info__name h1 {
   font-size: 24px;
 }
+
 .detail__buy__info__name p {
   font-size: 16px;
   margin-top: 12px;
@@ -511,10 +515,18 @@ i.bx.bx-x.icon__close:hover {
   align-items: center;
   margin-bottom: 50px;
 }
+.detail__buy__icon div {
+  transform: translateY(-25%);
+}
 .detail__buy__icon h1 {
   font-size: 24px;
   color: #fff;
   font-weight: 600;
+  letter-spacing: 2px;
+  width: 60%;
+  height: 24px;
+  overflow-y: hidden;
+  text-overflow: hidden;
 }
 .detail__buy__control {
   margin-top: 24px;
@@ -1097,7 +1109,7 @@ i.bx.bx-x.icon__close:hover {
   box-shadow: 5px 5px 15px 5px #000000;
 }
 .wrap__list__recievied {
-  height: 300px;
+  max-height: 300px;
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
@@ -1181,4 +1193,8 @@ i.bx.bx-x.icon__close:hover {
 .name__user__ordered span:last-child {
   color: var(--primary_color);
   margin-top: 12px;
+}
+.avatar__img {
+  width: 50px;
+  border-radius: 50%;
 }

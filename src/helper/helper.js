@@ -72,7 +72,7 @@ helper = {
   },
   showAvatar: () => {
     if (userActive.id != undefined && userActive.name != undefined) {
-      return `<img src="/uploads/${userActive.name}_avatar.jpg" alt="" class="avatar__img" />`;
+      return `<img src="/uploads/${userActive.name}_avatar.jpg" alt="${userActive.name}" class="avatar__img" class="avatar__shop"/>`;
     }
     return `<img src="/uploads/default.jpg" alt="" class="avatar__img" />`;
   },
@@ -95,7 +95,8 @@ helper = {
     return "";
   },
   getLength: (item) => {
-    return Object.keys(item).length;
+    return Object.keys(item).length > -0 ?  `<span>${Object.keys(item).length}</span>`: "";
   },
+
 };
 module.exports = helper;

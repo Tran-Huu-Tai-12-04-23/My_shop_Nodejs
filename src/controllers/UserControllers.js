@@ -334,14 +334,25 @@ const UserControllers = {
   },
   //[get] user/product/detail/:id
   productDetail(req, res) {
-    productsDB.findOne({ _id: req.params.id }, (err, product) => {
-      if (err) return res.send(err);
-      const shopStore = req.session.shopStore;
-      return res.render("product/detailProduct", {
-        product: utilsConvertoObject.singleToObject(product),
-        shopStore,
-      });
-    });
+    productsDB
+      .findOne({ _id: req.params.id })
+      .then((product) => {
+        userDB.findOne({ _id: product.authorID }).then((user) => {
+          const shopStore = req.session.shopStore;
+          if( user ) {
+            return res.render("product/detailProduct", {
+              product: utilsConvertoObject.singleToObject(product),
+              user: utilsConvertoObject.singleToObject(user),
+              shopStore,
+            });
+          }
+          return res.render("product/detailProduct", {
+            product: utilsConvertoObject.singleToObject(product),
+            shopStore,
+          });
+        });
+      })
+      .catch((err) => res.send(err));
   },
   // [get] user/product/bought
   getProductUserBought(req, res) {

@@ -1,6 +1,7 @@
 const OrderedDb = require("../model/Ordered");
 const utilsConvertoObject = require("../util/covertoObject");
 const userOrderedDb = require("../model/UserOrdered");
+const { request } = require("express");
 
 const ShopControllers = {
   storeOrderedOfShop(req, res) {
@@ -26,9 +27,15 @@ const ShopControllers = {
     const deleteUserOrdered = userOrderedDb.deleteOne({
       userOrdered: req.params.idUserOrdered,
     });
+
     Promise.all([deleteOrdered, deleteUserOrdered])
-      .then((data, data2) => {
-        return res.redirect("/shop/store/ordered");
+      .then((deleteOrdered, deleteUserOrdered) => {
+        OrderedDb.find({ authorProduct: req.session.idUser }).populate("productID")
+          .then((restOrdered) => {
+            req.session.shopStore = { ...restOrdered };
+            return res.redirect("/shop/store/ordered");
+          })
+          .catch((err) => res.send(err));
       })
       .catch((err) => res.send(err));
   },
