@@ -58,7 +58,7 @@
                 {{{getLength shopStore}}}
               {{/if}}
             </div>
-            {{#if shopStore }}
+            {{#if shopStore}}
               <ul class="list__recieved">
                 <h1 class="titile__order__received">Order received</h1>
                 <div class="wrap__list__recievied">
@@ -92,18 +92,21 @@
           <div class="avatar">
             <i class="bx bx-menu icon__active">
               <ul class="menu__user">
-                {{{showLoginRegister}}}
-                {{{showChangePass}}}
-                {{{showOptionsAdmin}}}
-                {{{showOptionsUser}}}
+                {{{showLoginRegister userName}}}
+                {{{showChangePass userName idUser}}}
+                <a href="/admin/allusers">
+                  <i class="bx bxs-user-detail"></i>
+                  <li>List users</li>
+                </a>
+                {{{showOptionsUser userName}}}
 
-                {{{showLogOut}}}
+                {{{showLogOut userName}}}
                 <i class="bx bx-x icon__close"></i>
               </ul>
             </i>
 
-            {{{showAvatar}}}
-            {{{showuser}}}
+            {{{showAvatar userName}}}
+            {{{showuser userName}}}
           </div>
         </div>
       </div>

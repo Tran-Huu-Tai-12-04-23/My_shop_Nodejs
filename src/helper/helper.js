@@ -1,16 +1,16 @@
 const products = require("../model/products");
-const { userActive } = require("../controllers/UserControllers");
+// const { userActive } = require("../controllers/UserControllers");
 
 helper = {
-  showuser: () => {
-    if (userActive.name != undefined) {
-      return `<span class="name__user">hi, ${userActive.name}</span>`;
+  showuser: (userName) => {
+    if (userName != undefined) {
+      return `<span class="name__user">hi, ${userName}</span>`;
     } else {
       return `<span class="name__user">Khách</span>`;
     }
   },
-  showOptionsUser: () => {
-    if (userActive.name != undefined) {
+  showOptionsUser: (userName) => {
+    if (userName != undefined) {
       return `
         <a href='/user/product/store'>
         <i class='bx bx-cart-download'></i>
@@ -33,8 +33,8 @@ helper = {
       return ``;
     }
   },
-  showLogOut: () => {
-    if (userActive.name != undefined) {
+  showLogOut: (userName) => {
+    if (userName != undefined) {
       return `<a href="/logout">
       <i class="bx bx-log-out"></i>
       <li href="">Log Out</li>
@@ -43,8 +43,8 @@ helper = {
       return "";
     }
   },
-  showLoginRegister: () => {
-    if (userActive.name != undefined) {
+  showLoginRegister: (userName) => {
+    if (userName != undefined) {
       return ``;
     } else {
       return `<a href="/login">
@@ -60,9 +60,9 @@ helper = {
   showNumberCart: () => {
     return "";
   },
-  showChangePass: () => {
-    if (userActive.name != undefined && userActive.id != undefined) {
-      return `<a href='/user/account/edit/${userActive.id}'>
+  showChangePass: (userName, idUser) => {
+    if (userName != undefined && idUser != undefined) {
+      return `<a href='/user/account/edit/${idUser}'>
         <i class='bx bx-user'></i>
         <li>Change Password</li>
       </a>`;
@@ -70,23 +70,14 @@ helper = {
       return "";
     }
   },
-  showAvatar: () => {
-    if (userActive.id != undefined && userActive.name != undefined) {
-      return `<img src="/uploads/${userActive.name}_avatar.jpg" alt="${userActive.name}" class="avatar__img" class="avatar__shop"/>`;
+  showAvatar: (userName) => {
+    if (userName != undefined) {
+      return `<img src="/uploads/${userName}_avatar.jpg" alt="${userName}" class="avatar__img" class="avatar__shop"/>`;
     }
     return `<img src="/uploads/default.jpg" alt="" class="avatar__img" />`;
   },
   calTotals: (totals) => {
     return totals + 24;
-  },
-  showOptionsAdmin: () => {
-    if (userActive.admin == true) {
-      return `<a href='/admin/allusers'>
-      <i class='bx bxs-user-detail'></i>
-        <li>List users</li>
-      </a>`;
-    }
-    return "";
   },
   showAmountCart: (amount) => {
     if (amount > 0) {
@@ -95,8 +86,13 @@ helper = {
     return "";
   },
   getLength: (item) => {
-    return Object.keys(item).length > -0 ?  `<span>${Object.keys(item).length}</span>`: "";
+    return Object.keys(item).length > -0
+      ? `<span>${Object.keys(item).length}</span>`
+      : "";
   },
 
+  getCost: (cost, amount) => {
+    return cost * amount;
+  },
 };
 module.exports = helper;

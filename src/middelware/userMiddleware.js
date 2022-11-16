@@ -12,14 +12,13 @@ const userMiddleware = {
     return res.redirect("/login");
   },
   checkAdmin: function (req, res, next) {
-    if (req.session.username === undefined) {
+    if (req.session.userName === undefined) {
       return res.redirect("/login");
     } else if (req.session.admin !== true) {
       return res.send("you are not allowed to access this page");
     }
     next();
   },
-
 };
 
 module.exports = userMiddleware;

@@ -25,10 +25,14 @@ const CartController = {
           listItems.forEach((item) => {
             sumTotals += item.amount * item.productID.cost;
           });
+          const userName = req.session.userName;
+          const idUser = req.session.idUser;
           return res.render("product/storeCarts", {
             listItems: utilsConvertoObject.mutilyToObject(listItems),
             countCart,
             sumTotals,
+            userName,
+            idUser,
           });
         })
         .catch((err) => {

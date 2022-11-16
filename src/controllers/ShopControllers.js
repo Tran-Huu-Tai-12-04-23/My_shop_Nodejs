@@ -8,8 +8,12 @@ const ShopControllers = {
     OrderedDb.find({ authorProduct: req.session.idUser })
       .populate("productID")
       .then((item) => {
+        const userName = req.session.userName;
+        const idUser = req.session.idUser;
         return res.render("shop/storeCart", {
           listItems: utilsConvertoObject.mutilyToObject(item),
+          userName,
+          idUser,
         });
       })
       .catch((err) => res.send(err));
@@ -30,7 +34,8 @@ const ShopControllers = {
 
     Promise.all([deleteOrdered, deleteUserOrdered])
       .then((deleteOrdered, deleteUserOrdered) => {
-        OrderedDb.find({ authorProduct: req.session.idUser }).populate("productID")
+        OrderedDb.find({ authorProduct: req.session.idUser })
+          .populate("productID")
           .then((restOrdered) => {
             req.session.shopStore = { ...restOrdered };
             return res.redirect("/shop/store/ordered");

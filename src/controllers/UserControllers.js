@@ -7,11 +7,11 @@ const UserOrdered = require("../model/UserOrdered");
 const cartStoreDB = require("../model/cartStore");
 const OrderedDb = require("../model/Ordered");
 
-var userActive = {
-  name: undefined,
-  admin: false,
-  id: undefined,
-};
+// var userActive = {
+//   name: undefined,
+//   admin: false,
+//   id: undefined,
+// };
 
 const UserControllers = {
   getHome(req, res) {
@@ -27,12 +27,16 @@ const UserControllers = {
       $or: [{ description: { $regex: search, $options: "i" } }],
     });
     const shopStore = req.session.shopStore;
+    const userName = req.session.userName;
+    const idUser = req.session.idUser;
     Promise.all([countCart, listProduct])
       .then(([countCart, listProduct]) => {
         return res.render("home", {
           countCart,
           products: utilsConvertoObject.mutilyToObject(listProduct),
           shopStore,
+          userName,
+          idUser,
         });
       })
       .catch((err) => res.send(err));
@@ -45,9 +49,9 @@ const UserControllers = {
   //logour
   logout(req, res) {
     // return res.send(req.session.acessToken);
-    userActive.name = undefined;
-    userActive.admin = false;
-    userActive.id = undefined;
+    // userActive.name = undefined;
+    // userActive.admin = false;
+    // userActive.id = undefined;
     req.session.destroy();
     res.clearCookie("refeshToken");
     return res.redirect("/");
@@ -62,12 +66,12 @@ const UserControllers = {
         return res.send("login failed: " + err.message);
       }
       if (user.password === req.body.password) {
-        req.session.username = user.username;
+        req.session.userName = user.username;
         req.session.idUser = user.id;
         req.session.admin = user.admin;
-        userActive.name = user.username;
-        userActive.id = user.id;
-        userActive.admin = user.admin;
+        // userActive.name = req.session.userName;
+        // userActive.id = req.session.idUser;
+        // userActive.admin = req.session.idUser;
         OrderedDb.find({
           authorProduct: req.session.idUser,
         })
@@ -85,7 +89,9 @@ const UserControllers = {
     });
   },
   showProfile(req, res) {
-    return res.render("user/profile");
+    return res.render("user/profile", {
+      name: "huutai",
+    });
   },
 
   register(req, res) {
@@ -122,9 +128,13 @@ const UserControllers = {
   getAllUsers(req, res) {
     userDB.find({}, (err, user) => {
       const shopStore = req.session.shopStore;
+      const userName = req.session.userName;
+      const idUser = req.session.idUser;
       res.render("user/users", {
         user: utilsConvertoObject.mutilyToObject(user),
         shopStore,
+        userName,
+        idUser,
       });
     });
   },
@@ -196,8 +206,12 @@ const UserControllers = {
   //[get] view create nnew item of user:id
   createNewItem(req, res) {
     const shopStore = req.session.shopStore;
+    const userName = req.session.userName;
+    const idUser = req.session.idUser;
     res.render("user/createitem", {
       shopStore,
+      userName,
+      idUser,
     });
   },
   //[post] create new item of user:id
@@ -245,10 +259,14 @@ const UserControllers = {
     Promise.all([products, count])
       .then(([products, count]) => {
         const shopStore = req.session.shopStore;
+        const userName = req.session.userName;
+        const idUser = req.session.idUser;
         return res.render("user/productStore", {
           products: utilsConvertoObject.mutilyToObject(products),
           count,
           shopStore,
+          userName,
+          idUser,
         });
       })
       .catch((err) => {
@@ -261,9 +279,13 @@ const UserControllers = {
     productsDB.findById(req.params.id, (err, product) => {
       if (err) return res.send(err);
       const shopStore = req.session.shopStore;
+      const userName = req.session.userName;
+      const idUser = req.session.idUser;
       return res.render("user/getProductEdit", {
         product: utilsConvertoObject.singleToObject(product),
         shopStore,
+        userName,
+        idUser,
       });
     });
   },
@@ -325,9 +347,13 @@ const UserControllers = {
       (err, products) => {
         if (err) return res.send(err);
         const shopStore = req.session.shopStore;
+        const userName = req.session.userName;
+        const idUser = req.session.idUser;
         return res.render("user/listProductDeleted", {
           products: utilsConvertoObject.mutilyToObject(products),
           shopStore,
+          userName,
+          idUser,
         });
       }
     );
@@ -339,16 +365,23 @@ const UserControllers = {
       .then((product) => {
         userDB.findOne({ _id: product.authorID }).then((user) => {
           const shopStore = req.session.shopStore;
-          if( user ) {
+          const userName = req.session.userName;
+          const idUser = req.session.idUser;
+          if (user) {
             return res.render("product/detailProduct", {
               product: utilsConvertoObject.singleToObject(product),
               user: utilsConvertoObject.singleToObject(user),
               shopStore,
+              userName,
+              idUser,
             });
           }
+
           return res.render("product/detailProduct", {
             product: utilsConvertoObject.singleToObject(product),
             shopStore,
+            userName,
+            idUser,
           });
         });
       })
@@ -362,9 +395,13 @@ const UserControllers = {
       .populate("productID")
       .then((item) => {
         const shopStore = req.session.shopStore;
+        const userName = req.session.userName;
+        const idUser = req.session.idUser;
         return res.render("user/productUserOrdered", {
           item: utilsConvertoObject.mutilyToObject(item),
           shopStore,
+          userName,
+          idUser,
         });
       })
       .catch((err) => res.send(err));
@@ -380,7 +417,7 @@ const UserControllers = {
       .findOne({ _id: req.params.id })
       .then((item) => {
         const newReceivedOrdered = new OrderedDb({
-          nameUserOrdered: req.session.username,
+          nameUserOrdered: req.session.userName,
           authorProduct: item.authorID,
           userOrdered: req.session.idUser,
           productID: req.params.id,
@@ -440,4 +477,4 @@ const UserControllers = {
   },
 };
 
-module.exports = { UserControllers, userActive };
+module.exports = { UserControllers };

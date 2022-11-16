@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const createToken = require("../util/CreateToken");
+const decode = require("jwt-decode");
 
 let refeshTokens = [];
 const authenticationMiddleware = {
