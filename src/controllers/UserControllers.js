@@ -466,12 +466,24 @@ const UserControllers = {
   },
   //[delete] user/product/order/delete/:id : cancle ordered
   cancleOrdered(req, res) {
-    UserOrdered.deleteOne({
+    const deleteUserOrder = UserOrdered.deleteOne({
       userOrdered: req.session.idUser,
       productID: req.params.id,
-    })
-      .then((data) => {
-        return res.redirect("/user/product/bought");
+    });
+    const deleteOrdered = OrderedDb.deleteOne({
+      userOrdered: req.session.idUser,
+      productID: req.params.id,
+    });
+    Promise.all([deleteUserOrder, deleteOrdered])
+      .then(([deleteUserOrder, deleteOrdered]) => {
+        console.log(deleteUserOrder);
+        console.log(deleteOrdered);
+        OrderedDb.findOne({ authorProduct: req.session.idUser })
+          .then((data) => {
+            req.session.shopStore = { ...data };
+            return res.redirect("/user/product/bought");
+          })
+          .catch((err) => res.send(err));
       })
       .catch((err) => res.send(err));
   },
