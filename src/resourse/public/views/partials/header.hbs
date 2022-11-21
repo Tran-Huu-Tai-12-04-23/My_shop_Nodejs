@@ -1,0 +1,82 @@
+<div class="header container">
+  <div class="header__util">
+    <a href="/" class="name__shop">WebShop</a>
+    <div class="header__search">
+      <form action="/" method="GET">
+        <input
+          type="search"
+          name="search"
+          class="input__search"
+          placeholder="Search"
+        />
+        <button type="submit" class="hidden"></button>
+      </form>
+      <div class="search__nav">
+        <i class="icon__search bx bx-search"></i>
+      </div>
+    </div>
+    <div class="header__wallet">
+      <i class="bx bx-coin-stack icon__wallet"></i>
+      <h1>Coins</h1>
+      <span>123.222</span>
+    </div>
+  </div>
+  <div class="header__info">
+    <i class="bx bxs-heart"></i>
+    <a href="/shop/store/ordered" class="nofication__recieved">
+      <div class="icon__nofication">
+        <i class="bx bxs-bell"></i>
+        {{#if shopStore}}
+          {{{getLength shopStore}}}
+        {{/if}}
+      </div>
+      {{#if shopStore}}
+        <ul class="list__recieved">
+          <h1 class="titile__order__received">Order received</h1>
+          <div class="wrap__list__recievied">
+            {{#each shopStore}}
+              <div href="/shop/store/ordered" class="list__recieved__item">
+                <img
+                  src="{{this.productID.link_image}}"
+                  alt="{{this.productID.nameproduct}}"
+                />
+                <span
+                  class="list__recieved__item__name"
+                >{{this.productID.nameproduct}}</span>
+                <div class="name__user__ordered">
+                  <span>Admin</span>
+                  <span class="list__recieved__item__time">2 ngay truoc</span>
+                </div>
+              </div>
+            {{/each}}
+
+          </div>
+        </ul>
+      {{/if}}
+    </a>
+    <a href="/user/cart/store" class="wrapp__cart">
+      <i class="bx bxs-cart-alt"></i>
+      {{{showAmountCart countCart}}}
+    </a>
+    <div class="avatar">
+      <i class="bx bx-menu icon__active">
+        <ul class="menu__user">
+          {{{showLoginRegister userName}}}
+          {{{showChangePass userName idUser}}}
+          <a href="/admin/allusers">
+            <i class="bx bxs-user-detail"></i>
+            <li>List users</li>
+          </a>
+          {{{showOptionsUser userName}}}
+
+          {{{showLogOut userName}}}
+          <i class="bx bx-x icon__close"></i>
+        </ul>
+      </i>
+
+      {{{showAvatar userName}}}
+      {{{showuser userName}}}
+    </div>
+  </div>
+</div>
+

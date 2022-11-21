@@ -1,0 +1,112 @@
+.wrap__footer {
+  background: linear-gradient(to bottom, #434141, #09070c);
+}
+
+.footer__detail__info {
+  display: flex;
+  justify-content: space-between;
+  height: var(--height_header);
+  align-items: center;
+}
+.footer__detail__info div:nth-child(1),
+.footer__detail__info div:nth-child(2) {
+  width: 28%;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+.footer__detail__info div:nth-child(1) {
+  border-right: 1px solid #ccc;
+}
+.footer__detail__info div:nth-child(3) {
+  width: 40%;
+}
+.footer__detail__info div:nth-child(3) input {
+  width: 70%;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 12px;
+  outline: none;
+}
+.footer__detail__info div:nth-child(3) button {
+  background-color: var(--coins__color);
+  padding: 6px 24px;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+}
+.footer__detail__info div:nth-child(3) button:hover {
+  background-color: #054030;
+}
+.footer__detail__info i {
+  color: var(--coins__color);
+  font-size: 24px;
+  list-style: var(--height_header);
+  transform: translateY(20%);
+}
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 0;
+  border-top: 1px solid var(--coins__color);
+}
+.footer__content > div > h1 {
+  color: var(--coins__color);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  position: relative;
+  cursor: pointer;
+}
+.footer__content > div > h1:hover::after {
+  display: block;
+}
+.footer__content > div > h1::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  right: 0;
+  left: 0;
+  background-color: #dd1111;
+  width: 100%;
+  height: 2px;
+  border-radius: 12px;
+  animation: fadeInText 0.3s ease-in-out;
+  display: none;
+}
+.sub__footer__content > li {
+  position: relative;
+  color: #fff;
+  margin: 6px 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+.sub__footer__content {
+  color: #fff;
+}
+.info__author {
+  display: flex;
+  align-items: center;
+}
+.info__author i {
+  margin-left: 12px;
+  padding: 12px;
+  background-color: var(--search__color);
+  border-radius: 12px;
+  color: var(--primary_color);
+}
+.info__author i:hover {
+  background-color: #fff;
+}
+
+@keyframes fadeInText {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
