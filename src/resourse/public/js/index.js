@@ -81,6 +81,12 @@ $(window).ready(function () {
   });
 
   const inputFormLogin = $(".input__form");
+  for (var input of inputFormLogin) {
+    if (input.value !== "") {
+      input.parentElement.querySelector(".icon__form").style.transform =
+        "translate(-10px, -250%)";
+    }
+  }
   inputFormLogin.blur(function () {
     if ($(this).val() != "") {
       $(this)

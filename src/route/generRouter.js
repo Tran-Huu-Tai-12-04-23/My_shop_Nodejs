@@ -9,7 +9,7 @@ const Authentications = require("../middelware/Authentications");
 router.put(
   "/user/account/change_pass/:id",
   userMiddleware.userLogin,
-  UserControllers.updataPass
+  UserControllers.updatePass
 );
 //[get] logout
 router.get("/logout", UserControllers.logout);

@@ -159,8 +159,13 @@ const UserControllers = {
       .findOne({ _id: req.params.id })
       .then((user) => {
         if (user) {
+          const userName = req.session.userName;
+          const idUser = req.session.idUser;
+          console.log("user " + user);
           return res.render("user/editPass", {
             user: utilsConvertoObject.singleToObject(user),
+            userName,
+            idUser,
           });
         } else {
           return res.send("can't find account ");
@@ -171,7 +176,7 @@ const UserControllers = {
       });
   },
 
-  updataPass(req, res) {
+  updatePass(req, res) {
     userDB
       .findOne({ _id: req.params.id })
       .then((user) => {
